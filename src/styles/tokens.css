@@ -1,0 +1,70 @@
+/* Luméa Skincare Design Tokens & System Styles */
+:root {
+  /* Brand Color Palette */
+  --color-blush-pink: #EFC6D8;
+  --color-soft-pink: #F6E0E6;
+  --color-mauve: #C39DB8;
+  --color-plum: #6B4B6B;
+  --color-deep-aubergine: #3E2F3F;
+  --color-white-pink: #FFF7F7;
+  --color-plum-hover: #583c58;
+  --color-plum-light: #835d83;
+  --color-border-pink: #edd5df;
+  --color-surface-card: #fdf6f8;
+
+  /* Typography */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Montserrat', system-ui, -apple-system, sans-serif;
+  --font-script: 'Alex Brush', cursive;
+
+  /* Radius Scale */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 9999px;
+
+  /* Shadows */
+  --shadow-subtle: 0 4px 20px -2px rgba(107, 75, 107, 0.06);
+  --shadow-hover: 0 10px 25px -4px rgba(107, 75, 107, 0.12);
+  --shadow-drawer: -4px 0 24px rgba(62, 47, 63, 0.15);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-deep-aubergine);
+  background-color: var(--color-white-pink);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-script {
+  font-family: var(--font-script);
+}
+
+/* Rounded image wrappers ensure smooth radius clipping */
+.rounded-container {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* Custom focus ring matching brand plum */
+:focus-visible {
+  outline: 2px solid var(--color-plum);
+  outline-offset: 2px;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,289 @@
+You are a senior frontend engineer and design-fidelity specialist. Build a complete, working, frontend-only website for a skincare brand called "Luméa — Skincare for a Brighter You". I have attached my FINAL APPROVED design board image. It is the PRIMARY SOURCE OF TRUTH for all visual design. Study it carefully before writing any code.
+
+Your job is to BUILD a real, working, verified website, not a static mockup and not a description of one.
+
+====================================================================
+0. NON-NEGOTIABLE RULES
+====================================================================
+- Inspect the existing project (files, package.json, config, structure) BEFORE modifying anything. Extend or correct what exists instead of blindly overwriting it.
+- Use the attached reference image as the primary design reference. Do NOT redesign, modernize, simplify, reinterpret or replace its visual style, layout, palette, typography or composition.
+- The reference is a DESIGN BOARD containing 9 separate page mockups plus a Brand System panel (logo, palette, typography, tech stack) and a footer mockup (item 10). It is NOT one long webpage. Build each mockup as its own route.
+- Do NOT embed the reference image (or any crop of it) as a background or as a substitute for real UI. Rebuild everything with real HTML, CSS, images, forms, buttons and interactive components.
+- Do NOT omit pages, silently remove requirements, or replace functional features with placeholders or fake buttons. Every visible control must either work or be clearly labeled as a non-functional illustrative element.
+- If a tiny detail cannot be read from the image, make the smallest reasonable choice consistent with the surrounding design.
+- If Google AI Studio or this environment cannot run the requested stack (for example Astro), STATE THE LIMITATION EXPLICITLY and ask how to proceed. Do NOT silently switch frameworks.
+- Do not claim any test, audit or requirement passed unless you actually ran it. Report failures, skipped checks and limitations honestly.
+
+====================================================================
+1. TECHNOLOGY STACK (ALL REQUIRED, USED PURPOSEFULLY)
+====================================================================
+Required: Astro, HTML5, CSS3, Tailwind CSS, JavaScript, TypeScript, React, jQuery, Bootstrap, GSAP, XML (sitemap), SEO best practices, GitHub-ready repo, Vercel deployment.
+
+NOTE ON CONFLICT: An earlier version of my brief said "no React/TypeScript/Bootstrap/jQuery". That is SUPERSEDED. The final decision is: use ALL of the technologies above, but SELECTIVELY and without conflicts, as defined below.
+
+Role of each technology:
+- Astro: project structure, layouts, file-based routing, static generation (SSG), components. Use Astro's official integrations (@astrojs/react, @astrojs/sitemap, Tailwind via its currently officially supported setup). Do not use deprecated APIs. Use current stable, mutually compatible versions and follow each package's official setup instructions.
+- HTML5: semantic landmarks (header, nav, main, section, article, aside, footer).
+- Tailwind CSS: responsive utility styling and layout, wired to the design tokens (theme config).
+- Custom CSS: Luméa visual identity, design tokens as CSS variables, radius scale, shadows, hover/focus details, anything utilities can't express cleanly.
+- React + TypeScript (selective, via Astro islands): ONLY for genuinely interactive widgets: (a) the skincare quiz, (b) the cart drawer + cart page + checkout interactions, (c) optionally shop filtering. Everything else stays static Astro. Use the smallest suitable client directive (client:load, client:visible, client:idle). Do not turn the site into a SPA.
+- Vanilla JavaScript: lightweight behaviors (mobile menu toggle, tabs, search overlay, wishlist, toasts, scroll reveals, form validation utilities).
+- jQuery (selective): use it for ONE clearly defined, compatible interaction (for example, the FAQ accordion enhancement on the Contact page, or the password-visibility toggle). jQuery must NEVER control the same DOM subtree as React, must not create duplicate event handlers, and must not conflict with Astro page loading. Load it only on pages that need it, via npm import or a pinned CDN-free local bundle, no unnecessary plugins.
+- Bootstrap (selective): do NOT apply a Bootstrap theme or let default Bootstrap styles override the Luméa design. Import only what is justified (for example the grid/utilities or a specific modular piece) in a scoped way, and verify it does not clash with Tailwind's preflight. Document exactly what Bootstrap is used for. If it proves technically unsuitable for a component, explain why in the README and use it only where suitable instead of forcing it.
+- GSAP: carefully selected animations only (hero entrance, editorial section reveals, subtle botanical drift, product image transitions). Use CSS transitions for simple hover/focus effects. Clean up listeners/ScrollTriggers. Respect prefers-reduced-motion. Content must remain fully visible if JS fails or animations are disabled.
+- XML: a valid sitemap-index/sitemap generated from the real indexable routes (including product and article slugs). No meaningless XML files.
+- GitHub: clean, GitHub-ready repo (.gitignore, README, sensible commits structure guidance).
+- Vercel: compatible deployment (static output), documented steps, document any environment variables (likely none). No secrets in client code.
+
+Architecture rule: these technologies must coexist without duplicated functionality or style conflicts. Explain the architecture and the purpose of each technology in the README.
+
+Use a shared state module (TypeScript) for cart and wishlist (localStorage-backed, with subscribe/emit via custom events and the storage event) so that Astro components, React islands and vanilla scripts all see the same data. Avoid Astro ClientRouter/view transitions unless you correctly handle re-initialization (astro:page-load) and duplicate listeners.
+
+====================================================================
+2. BRAND DESIGN SYSTEM (FROM THE REFERENCE BRAND SYSTEM PANEL)
+====================================================================
+Brand: Luméa. Tagline: SKINCARE FOR A BRIGHTER YOU (small, letter-spaced uppercase under the logo). Logo: elegant serif wordmark "Luméa" in plum with a small line-art botanical leaf above the "u/m" and a thin underline-style divider. If no logo file exists, recreate it as an SVG/typographic treatment faithful to the reference. Use the same logo everywhere (header, footer, favicon).
+
+Color tokens (as shown in the reference):
+- Blush Pink #EFC6D8 (labelled #E7C8D8 area in image; use #EFC6D8)
+- Soft Pink #F6E0E6
+- Mauve #C39DB8
+- Plum #6B4B6B
+- Deep Aubergine #3E2F3F
+- White Pink #FFF7F7
+
+Typography:
+- Headings: Playfair Display (editorial serif; hero headlines are large, light-weight, tightly leaded).
+- Body, nav, labels, buttons, UI: Montserrat.
+- Load fonts efficiently (self-hosted or optimized, font-display: swap, subset, preload critical weights, fallbacks: Georgia/serif and system-ui/sans-serif).
+- Also use a small handwritten/script accent only where the reference shows it (e.g. "Real skin. Real people. Real care.", "Healthy skin, Happy you", "Self care is skincare"). Use a script font such as a Google handwriting font, loaded efficiently.
+
+Centralize design tokens: colors, font families, type scale, spacing, container widths (desktop reference ~1440px), border radii, shadows, transitions, breakpoints. Reuse them everywhere via Tailwind theme + CSS variables.
+
+Visual direction: premium, gentle, botanical, editorial, sophisticated. Soft blush gradients on pages, subtle pink surfaces, generous whitespace, thin mauve/pink 1px borders and separators, plum primary buttons with white text (small, refined, with an arrow like "Shop Bestsellers →"), understated hover states, watercolor-like pink floral/botanical illustrations (peonies, roses, leaves line art), pink serum/cream/cleanser/mask packaging photography. Dark plum footer. NEVER use black, dark blue, dark green, gold, neon or an unrelated theme. No generic Bootstrap look.
+
+====================================================================
+3. ROUNDED EDGES (MANDATORY, DESIGN-SYSTEM BASED)
+====================================================================
+Define a cohesive radius scale (example: --radius-sm 8px, --radius-md 14px, --radius-lg 20px, --radius-xl 28px, --radius-pill 999px) and use it consistently. Rounded corners must look elegant and premium, not cartoonish. No sharp, square corners on any of the following; apply the radius to the ACTUAL VISIBLE OUTER CONTAINER (not just an inner element) and use overflow:hidden so images respect rounded corners:
+- Product cards, blog/editorial cards, category cards
+- Image containers where appropriate, product image galleries
+- Buttons and secondary actions
+- Search fields, text inputs, textareas, select fields
+- Dropdown menus
+- Popups, dialogs, modals
+- Cart drawer, filter panels, mobile navigation drawer
+- Toast notifications
+- Quiz answer cards
+- Login and signup panels, newsletter forms
+- FAQ and accordion containers
+Keep borders thin, shadows subtle, harsh outlines avoided.
+
+====================================================================
+4. INTERACTION STATES (MANDATORY)
+====================================================================
+Every interactive component needs designed hover, focus-visible, active, selected, disabled, loading and error states consistent with the reference:
+- Product cards subtly lift / shadow on hover; product images gently zoom INSIDE their rounded container.
+- Buttons: smooth background/border/transform transitions.
+- Nav links: restrained underline or color shift; active page indicated (reference shows "Home" bold/active).
+- Wishlist heart clearly shows saved vs unsaved (filled vs outline) with aria-pressed.
+- Quiz cards visibly show the selected answer.
+- Filter options show selected state; tabs show active tab.
+- Dropdowns/popups open and close smoothly.
+- Cart controls give visible feedback after add/update/remove.
+- Inputs show clear focus and invalid states (not color alone).
+Use CSS transitions for simple effects; GSAP only for meaningful motion. No jitter, bounce or layout shift. Nothing essential may depend on hover alone (touch + keyboard must work). Respect prefers-reduced-motion.
+
+====================================================================
+5. SHARED LAYOUT AND COMPONENTS
+====================================================================
+Build reusable Astro components/layouts (no one giant file, no duplicated card markup):
+BaseLayout (head/SEO), SiteHeader, MobileNavigation (accessible drawer), SiteFooter, AnnouncementBar (only if it fits the reference proportions), Breadcrumbs, PrimaryButton/SecondaryButton styles, ProductCard, ProductGrid, ProductGallery, ProductFilters, RatingDisplay, NewsletterForm, FormField, FAQAccordion, Tabs, Toast, EmptyState, loading/error states, SearchOverlay, CartDrawer, Modal.
+
+Header (from reference): Luméa logo at left; nav centered: Home, Shop, About, Blog, Contact (Home active); right icons: search, account/user, wishlist (heart), cart with live item-count badge. Thin, light, transparent-on-blush header. Icon-only buttons need accessible names.
+
+Header search: working search overlay/interface that searches products (and optionally articles) from shared data and links to results.
+
+SHARED FOOTER (item 10 in the reference, same component on EVERY route): dark plum (#6B4B6B to Deep Aubergine tone) background with rounded/flowing top edge as in the reference, containing:
+- Luméa logo (light version) + tagline "Skincare for a brighter you"
+- Short brand description (natural skincare for real people…)
+- Quick Links: Home, Shop, About, Blog, Contact
+- Customer Care: FAQ, Shipping, Returns, Track Order, Support (each must point to a valid page or meaningful in-page destination, e.g. /contact#faq; create simple valid pages for Privacy, Terms, Shipping & Returns if linked)
+- Social icons (Instagram, Facebook, Pinterest, YouTube, X) with accessible names; use placeholder hrefs clearly marked as placeholders OR "#" is NOT acceptable for dead links, so link to real brand placeholder URLs documented in README or render them as clearly non-functional
+- "Join Our Glow Club" newsletter input + Subscribe button (validated, demo)
+- Privacy Policy / Terms / © Luméa. All rights reserved.
+- Botanical line illustration and the handwritten "Self care is skincare" detail on the right.
+
+====================================================================
+6. SHARED DATA
+====================================================================
+Create src/data/products.ts (typed) with realistic sample products (at least 24 to match the "24 Products" count in the shop mockup). Each product: id, slug, name, category (Serum, Moisturizer, Cleanser, Toner, Mask, Eye Care, Sunscreen), skinTypes[], concerns[], price (number, USD, matching the reference e.g. Radiant Face Serum $32.00, Hydrating Moisturizer $26.00, Gentle Cleanser $24.00, Night Repair Cream $36.00, Vitamin C Serum $32.00, Clay Face Mask $26.00, Eye Cream $32.00, Toner $20.00, Sunscreen SPF 50 $30.00, plus more), images[] (consistent local assets), shortDescription, description, benefits[], ingredients[], howToUse, rating, reviewCount, badge (e.g. "Best Seller"), featured/bestseller flag, createdAt/popularity for sorting. Use this ONE source for shop, detail pages, related products, wishlist, cart, search and quiz recommendations. Never derive product identity or price from displayed text; use ID and numeric price.
+Create src/data/articles.ts (typed): slug, title, summary, category (Skincare, Ingredients, Lifestyle, Beauty), date, readingTime, image, body, featured flag. Include the article titles seen in the reference (e.g. "The Ultimate Guide to Your Skin Type", "10 Ingredients That Skincare...", "Morning vs. Night Skincare Tips", "How to Build a Minimal Skincare Routine", "Healthy Skin, Happy You: Self Care Tips") and enough more to demonstrate pagination.
+Do NOT fabricate medical claims, and never claim products cure or treat skin conditions. Rating/review values in data are demo values; do not output them in structured data unless clearly valid (see SEO).
+
+====================================================================
+7. PAGE-BY-PAGE SPECIFICATION (MATCH EACH MOCKUP)
+====================================================================
+
+PAGE 1: HOME  /   (mockup "1. Home Page")
+1. Header (and slim announcement bar only if it doesn't disturb the reference proportions).
+2. Hero: soft blush-to-mauve gradient background; left column: large Playfair headline "Pure Care for Naturally Radiant Skin", supporting copy "Clean ingredients. Real results. A more confident you.", plum button "Shop Bestsellers →" linking to /shop. Right side: large close-up skincare model photo (eyes closed, glowing skin) with a pink serum bottle (Luméa label) in the foreground-left of the model and soft pink flowers; a small circular rotating-text badge near the headline (decorative, aria-hidden; subtle slow rotation only if reduced-motion allows). Hero image eager-loaded with fetchpriority high.
+3. Trust strip (thin bordered row, 4 items with simple line icons): 100% Natural Ingredients, Dermatologist Approved, Cruelty Free, Sustainable Packaging. NOTE: these are reference-copy claims; keep as in the reference but add a README note that they are placeholder marketing claims requiring real substantiation, and never put them in structured data.
+4. "Bestsellers" section: heading in Playfair, subtext "Most loved. For your natural glow.", right-aligned "View All" button → /shop. Four product cards in one row (Radiant Face Serum $32.00, Hydrating Moisturizer $26.00, Gentle Cleanser $24.00, Night Repair Cream $36.00), each with soft blush image tile, wishlist heart (top-right), name, price, star rating, and a working Add to Cart control (visible and keyboard/touch accessible). Card click opens the correct /shop/[slug].
+5. "The Power of Nature" split feature: left = botanical flower illustration/photo; circular-cropped image of pink flowers and dropper/serum on the right-center; text with short paragraph, small list (Botanicals, Vitamins, Antioxidants) with leaf icons, and "Our Philosophy →" link to /about.
+6. Brand statement banner: plum rounded panel with handwritten/serif "Your skin deserves the best." and a newsletter email field + "Join Our Community" button inside (validated, demo).
+7. Shared footer.
+Keep hierarchy and proportions as shown. Do not add unnecessary extra sections.
+
+PAGE 2: ABOUT / OUR PHILOSOPHY  /about   (mockup 2)
+1. Header. 2. Hero: heading "More Than Skincare It's a Philosophy", copy "We believe in real beauty, honest care and the power of nature.", plum "Our Story" button; right: close-up face photo with pink flower; a vertical label stack "Natural / Thoughtful / Effective".
+3. "Our Journey" brand story + vertical timeline with thin line and dots: 2018 (The idea was born…), 2020 (A community grew…), 2023 (Expanding our promise…); on the right a botanical illustration/photo of flowers and a handwritten overlay "Real skin. Real people. Real care."
+4. "Our Values" row of rounded cards with line icons: Clean Ingredients, Sustainability, Inclusivity, Transparency (short copy each).
+5. Large editorial image-and-text banner: hands holding pink flowers on left, text "Kind to your skin. Kind to the planet." and "Our Impact" button (links to a valid destination, e.g. an on-page #impact section or a created section).
+6. Footer.
+
+PAGE 3: SHOP  /shop   (mockup 3)
+1. Header. 2. Collection hero banner: heading "Shop Our Skincare Collection", sub "Thoughtfully crafted. Naturally effective.", product/botanical imagery on the right.
+3. Two-column layout: left rounded filter panel titled "Filter" with collapsible groups: Category (All, Serum, Moisturizer, Cleanser, Toner, Mask), Skin Type (Normal, Dry, Oily, Combination, Sensitive), Concern (Hydration, Acne, Anti-Aging, Brightening, Soothing), Price (dual or single range slider $0–$100 with labeled values), and "Clear Filters". Right: toolbar with product count ("24 Products", updates dynamically) and "Sort by" dropdown (Popular, Price low-high, Price high-low, Newest, Rating, Name). Three-column product grid with the reference card proportions; pagination (1 2 3 >) with working prev/next and current-page state; or load-more as an alternative.
+4. Filtering, sorting, pagination MUST work; combine filters logically; sync with URL query params if reasonable; show an EmptyState with a "Clear filters" action when nothing matches. All products must also exist in the static server-rendered HTML (progressive enhancement) so content doesn't depend entirely on JS.
+5. Mobile: sidebar becomes an accessible, rounded filter drawer or collapsible section (focus managed, Escape closes, no overflow).
+6. Footer.
+
+PAGE 4: PRODUCT DETAIL  /shop/[slug]   (mockup 4)
+Use getStaticPaths to generate a page per product. Layout:
+1. Header + breadcrumb (Home / Shop / Product name; with BreadcrumbList structured data).
+2. Left: vertical thumbnail strip (4 thumbs) beside a large main product image in a rounded container; clicking/keyboard-selecting thumbnails switches the main image (accessible, with active state).
+3. Right: "Best Seller" badge, product name (Playfair), star rating + rating number + review count (e.g. 4.8 (124 reviews)), price (e.g. $32.00), short description, benefit list with icons (Hydrating, Brightening, Anti-aging, Suitable for all skin types), quantity selector (− / value / +, validated positive integer with sensible max), full-width plum "Add to Cart" button, outlined "Add to Wishlist" button (toggle with aria-pressed).
+4. Tabs: Description, Ingredients, How to Use, Reviews (accessible tablist: arrow keys, aria-selected, tabpanel). Reviews tab shows clearly-labeled sample/demo review content or a "no reviews yet" state; do not fabricate real customer reviews in structured data.
+5. "You may also like" related-products carousel/row (reference shows 3 cards with prev/next arrows). Arrows must work (keyboard accessible, no fake controls).
+6. Invalid slug: a useful, branded not-found state (and proper 404 behavior), with links back to the shop.
+7. Footer.
+
+PAGE 5: SKIN QUIZ  /skin-quiz   (mockup 5)
+1. Hero: "Discover Your Perfect Skincare Routine", copy "Answer a few quick questions and get a personalized routine made just for your skin.", model photo on the right.
+2. Quiz card (React + TypeScript island): "Step 1 of 5" with progress bar and step indicator; question "What is your skin type?" with five rounded answer cards with line icons: Normal (Balanced & healthy), Dry (Feels tight), Oily (Shiny easily), Combination (Both), Sensitive (Prone to redness). Further steps: main skin concern (multi-select or single, e.g. Hydration, Acne-prone, Dullness, Fine lines, Redness/Sensitivity), current routine complexity/time (Minimal, Moderate, Full), texture/finish preference or lifestyle (e.g. sun exposure), and a final preference step. Back and Next buttons (Next is plum with arrow); Back disabled/hidden on step 1.
+3. Validation: cannot advance without an answer; show an accessible error message near the choices (aria-live) and focus handling. Preserve answers when navigating back.
+4. Results screen: deterministic recommendation logic (same answers → same result) producing a personalized routine (Cleanse → Treat → Moisturize → Protect, AM/PM) with relevant products from the shared data (with working Add to Cart and links), plus "Restart quiz" control. Include a clear note: recommendations are general cosmetic guidance, not medical diagnosis or treatment.
+5. Bottom strip with three items (Personalized Recommendations, Expert Advice, Better Results) as in the reference. NOTE: "Expert Advice" must not imply fabricated credentials; keep copy modest.
+6. Footer.
+
+PAGE 6: GLOW JOURNAL  /journal   (mockup 6)
+1. Header. 2. Hero: "Glow Journal", "Skincare tips, ingredient guides, & a healthier you." with floral imagery.
+3. Search field ("Search articles…") + category chips (All, Skincare, Ingredients, Lifestyle, Beauty): working, combined filtering, with result count and empty state; chips show active state (aria-pressed).
+4. Featured article card (large rounded image + title "The Ultimate Guide to Your Skin Type", summary, date, reading time).
+5. Editorial article grid (2-column in the reference, may be 3 on wide): image, category, title, summary, date, reading time. Pagination or "Load more" that works.
+6. Dynamic route /journal/[slug] with getStaticPaths; every card opens the matching article (Article structured data on these only). Include breadcrumb, article body, related articles, back link.
+7. No medical claims. Footer.
+
+PAGE 7: CART  /cart  AND CHECKOUT  /checkout   (mockup 7)
+Cart (React TS island + shared store):
+- Heading "Your Cart (N items)"; rows with thumbnail (same product image everywhere), name, unit price, quantity −/+ control, Remove; Order Summary rounded panel: Subtotal, Shipping (flat demo estimate, e.g. $5.00 shown in the reference, free-shipping threshold optional and documented), Total (reference example: subtotal $84.00 + $5.00 = $89.00), "Proceed to Checkout" plum button, "Continue Shopping" link, "Apply Discount Code" input + Apply button with honest documented demo codes (e.g. one or two demo codes listed in README/UI hint; invalid/empty codes show errors), "Secure Checkout" reassurance block must NOT imply real payment security; reword to "Demo checkout: no payment is processed." Payment-brand logos from the reference must NOT be shown as functional; omit them or mark purely decorative/removed.
+- Attractive empty-cart state with Continue Shopping.
+- Bottom decorative banner "Good skin is always a good idea." with flowers.
+Checkout:
+- Contact + shipping form (full name, email, phone optional, address, city, region/state, postal code, country select), required-field validation, order summary, prominent "Frontend demonstration — no real order or payment" notice, NO card/payment fields collected, demo order-confirmation screen after valid submission (clearly says it is a demo, no order was placed), cart cleared only after demo confirmation (or kept, documented), duplicate submission prevented.
+
+Global cart system (MANDATORY AND FULLY WORKING):
+1. Every product card has a working Add to Cart. 2. Product detail Add to Cart adds the selected quantity. 3. Adding an existing item increases its quantity (no duplicate lines). 4. Success toast / accessible confirmation (aria-live). 5. Header count badge updates immediately. 6. Rounded cart drawer (accessible dialog) opens after add or via the header cart icon, with item list, quantity controls, remove, subtotal, "View Cart" and "Checkout". 7. Full cart page. 8. Quantity increase/decrease with min 1 and a sensible max; remove item. 9. Totals recalc on every change. 10. Empty state. 11. Continue Shopping link. 12. Persist via localStorage with versioned key. 13. Safe initialization: wrap in try/catch, handle unavailable storage, corrupted JSON, wrong shapes, unknown product IDs, invalid quantities/prices (re-validate against the product data; recompute prices from the data source, never trust stored prices). 14. No browser APIs during server rendering. 15. Works on desktop and mobile. 16. Cross-tab sync via the storage event. Do not store sensitive data. Wishlist uses the same approach (separate key).
+
+PAGE 8: ACCOUNT / LOGIN  /account   (mockup 8)
+- Split-screen: left form panel (rounded), right illustrated pink botanical/glass-bottle artwork with handwritten-style "Good Skin Takes Time".
+- "Welcome Back" + "Log in to your account for a better skincare experience." Tabs/views: Login and Sign up (accessible tablist).
+- Login: email, password (with working show/hide toggle, accessible name and aria-pressed), "Forgot password?" (must not pretend to work: show a demo-mode message or modal explaining no backend), Login button. Sign up: name, email, password, confirm password with requirements text.
+- Social buttons (Google/Apple) in the reference must be marked clearly as non-functional/demo or removed; don't pretend to work.
+- "Don't have an account? Sign up" switches to the signup view.
+- Bottom three items: Track Orders, Save Wishlist, Exclusive Offers (link to valid destinations or present as non-interactive illustrations).
+- Clear demo messaging: no real authentication, no account creation, no persistence of passwords. NEVER store or log passwords. Successful validation shows an honest demo message ("Demo only — no account was created").
+- Accessible error feedback (aria-live, aria-invalid, aria-describedby).
+
+PAGE 9: CONTACT  /contact   (mockup 9)
+1. Header. 2. Hero: "We're Here To Help", "Have a question? Need support? We'd love to hear from you.", floral imagery.
+3. Contact info (use clearly marked placeholders, e.g. email hello@lumea.example and a placeholder phone and location; do NOT present invented details as real; the reference shows hello@lumea.com / +92 300 1234567 / Lahore, Pakistan, so use them ONLY as visibly documented placeholders until I supply real details, and keep them OUT of structured data).
+4. "Send Us a Message" form: Name, Email, Phone (optional), Subject (select, required), Message (textarea) + "Send Message →" button. Full validation, error states, success state honestly worded as DEMO ("no message was sent").
+5. FAQ accordion (id="faq") with at least: How long does shipping take? Do you offer international shipping? Can I return my order? Are your products vegan and cruelty free? (Write answers as clearly-marked placeholder/policy-draft text; don't invent certifications.) Accessible (buttons, aria-expanded, aria-controls, keyboard).
+6. Social links. 7. Map/location block ONLY if a real location is supplied, otherwise omit the map.
+8. Footer.
+
+PAGE 10: 404  /404   Branded not-found page using the same layout.
+Also create simple valid pages for any footer link (Privacy, Terms, Shipping & Returns, Track Order, Support/FAQ) so there are no dead links; mark policy pages clearly as placeholder drafts and noindex them only if they are truly placeholder (document the choice).
+
+====================================================================
+8. STRICT FORM VALIDATION (ALL FORMS)
+====================================================================
+Applies to: contact, newsletter (home banner + footer), login, signup, quiz, checkout, coupon, quantity, search/filter inputs where relevant, and any other form.
+
+Build ONE reusable validation module (src/lib/validation.ts) used by Astro scripts, React islands and jQuery code alike, exporting pure functions: validateName, validateEmail, validatePassword, validatePhone, validateRequired, validateQuantity, validateCoupon, validateSelect, validateTextarea. Each returns { valid, message }.
+
+A. Required: trim before validating; reject empty and whitespace-only; show a clear message next to each invalid field; no success state until ALL pass.
+B. Name: reusable function + regex, reject digits, reject empty/whitespace-only, support international names (Unicode letters and marks), spaces, hyphens, apostrophes (straight and curly). Starting pattern (apply after trim, requires Unicode property escapes support, verify the build target supports it): /^[\p{L}\p{M}]+(?:[ '\u2019-][\p{L}\p{M}]+)*$/u. Names like "John2", "A1ice", "12345" must be rejected; "Jean-Luc", "O'Brien", "María José", "Zoë", "محمد علي" accepted.
+C. Email: reusable function + practical pattern, reject empty, malformed, missing local part, missing domain, whitespace inside, bad dot placement (leading/trailing/consecutive dots), no TLD. Combine type="email" with JS validation. Do not claim the mailbox exists.
+D. Password (demo): clear requirements text, validated minimum length (e.g. 8+) and at least basic complexity as documented, confirmation must match, show/hide toggle works, never log/expose password values, no real authentication.
+E. Phone (if present): trim; accept international formats with + ( ) - . spaces; require a reasonable digit count (e.g. 7–15 digits); reject letters/malformed; no single-country pattern.
+F. Others: required selects, quantity is positive integer within bounds, required quiz answer, coupon per documented demo rules, checkout fields, textarea min length after trim.
+G. Behavior: errors next to fields; aria-invalid and aria-describedby; focus the first invalid field on submit; accessible error summary for longer forms (checkout, signup); not color-alone (icon/text); clear errors as the user corrects; prevent duplicate submission while processing (disabled button + loading state); success only after validation passes; never a false success. Use native attributes (required, type, minlength, maxlength, autocomplete, inputmode) plus JS validation (use noValidate on the form and custom messages so UX is consistent, while keeping native semantics).
+
+====================================================================
+9. ACCESSIBLE DIALOGS, DRAWERS, DROPDOWNS
+====================================================================
+Cart drawer, mobile nav drawer, filter drawer, search overlay, modals, dropdowns: semantic dialog (native <dialog> or role="dialog" aria-modal), accessible name, visible close button with accessible name, Escape closes, focus trap while open, focus returns to the trigger on close, background inert/scroll-locked, visible focus indicators, rounded outer corners, subtle animation honoring reduced motion, click-outside closing only where no data loss can occur (never for forms with entered data).
+
+====================================================================
+10. RESPONSIVE DESIGN
+====================================================================
+Desktop ~1440px (reference), tablet ~768px, mobile ~390px (design targets, not limits). Intentionally adapt, don't merely shrink: stack split layouts logically, mobile menu, product grids 4→3→2→1 as appropriate, usable filter drawer, appropriately sized imagery, comfortable touch targets (≥44px; WCAG 2.2 target size), readable text, no horizontal overflow, forms and buttons fit the viewport, carousels swipe/scroll with visible controls. Preserve brand identity at every breakpoint.
+
+====================================================================
+11. SEO
+====================================================================
+Unique title and meta description per route; canonical URLs using a configurable production site URL (astro.config `site`; use a clearly-marked placeholder domain until I supply one and document it); semantic landmarks; one H1 per page with logical heading order; descriptive alt text; descriptive internal link text; clean consistent URLs (decide trailing-slash policy once and apply it consistently); robots.txt; XML sitemap generated from real public routes (@astrojs/sitemap) including product and article pages and excluding 404/demo-only pages (cart, checkout, account as noindex where appropriate); Open Graph + Twitter card metadata; favicon + theme-color; Organization/WebSite JSON-LD; BreadcrumbList JSON-LD; Product JSON-LD ONLY with properties supported by real product data (name, image, description, sku; offers price/priceCurrency only if I accept the demo prices as real, otherwise omit; do NOT include aggregateRating/review for demo ratings; no false availability); Article JSON-LD only for real article pages; no duplicate indexable pages; correct 404; important content in the rendered HTML (not JS-dependent); no keyword stuffing, hidden text or misleading tactics. No invented business address, phone, domain, certifications, medical claims or customer reviews.
+
+====================================================================
+12. ACCESSIBILITY (WCAG 2.2 AA TARGET, VERIFIED)
+====================================================================
+Semantic HTML; skip-to-content link; keyboard access everywhere; visible focus indicators; logical focus order; proper labels; helpful errors; accessible names for icon buttons; ARIA only where native HTML is insufficient; verify color contrast (note plum on blush, mauve text on white-pink, and small light-gray text in the reference may fail: adjust minimally while preserving the look); meaningful alt text; decorative botanicals aria-hidden/alt=""; reduced-motion support; keyboard-accessible tabs/accordion/drawer/modal; focus management; aria-live announcements for cart and form updates; no reliance on color alone. Do not claim perfect accessibility without running automated and manual checks.
+
+====================================================================
+13. PERFORMANCE
+====================================================================
+Static generation; minimal client JS; React islands only where required and with lazy directives; no hydration of static sections; responsive images via Astro's image tooling (astro:assets) with explicit width/height or aspect ratios, modern formats (AVIF/WebP), lazy-loading below the fold, eager + fetchpriority for the hero; optimized fonts; no render-blocking scripts; avoid layout shift and expensive scroll handlers (use IntersectionObserver for reveals); clean up GSAP/listeners; no heavy libraries for simple features; no autoplay video; no broken images; no console errors. Targets: Lighthouse 90+ for Performance, Accessibility, Best Practices, SEO where reasonable (targets, not promises).
+
+====================================================================
+14. IMAGE ASSETS
+====================================================================
+Use consistent, high-quality local assets in the pastel editorial skincare/botanical style of the reference. Never invent or hot-link unstable image URLs; if remote assets are used, test them and provide fallbacks. If real photography is not available in this environment, create tasteful local fallbacks (SVG product-bottle illustrations in blush/mauve/plum, soft gradient tiles, botanical SVG line art/watercolor-style flowers) and put them in src/assets with a documented slot list so I can drop in my own cropped photos from the reference without code changes. Use the same product image for the card, detail page, cart and drawer. Never use the reference board image itself as an asset.
+
+====================================================================
+15. PROJECT STRUCTURE
+====================================================================
+Suggested structure (adapt, keep clear separation): src/pages (index, about, shop/index, shop/[slug], skin-quiz, journal/index, journal/[slug], cart, checkout, account, contact, privacy, terms, shipping-returns, 404), src/layouts, src/components (static Astro) and src/components/react (TSX islands), src/data (products.ts, articles.ts), src/lib (validation.ts, cart-store.ts, wishlist-store.ts, seo.ts, format.ts), src/scripts (vanilla/jQuery/GSAP modules), src/styles (tokens.css, global.css), src/assets, public (robots.txt, favicon, og image). Descriptive names; no giant components; no duplicated markup or duplicated product data; no browser APIs during SSR; no secrets in client code; no invalid HTML; no unexplained placeholder content.
+
+README must include: project overview, setup, dev/build/preview commands, deployment to GitHub + Vercel, route list, the architecture and the purpose of each technology (Astro, HTML, CSS, Tailwind, JS, jQuery, Bootstrap, React, TypeScript, GSAP, XML, SEO, GitHub, Vercel), where Bootstrap and jQuery are used and why, environment variables (if any), a clear list of which features are frontend demos (cart, checkout, auth, contact, newsletter, quiz), placeholder content that needs replacing (domain, contact details, claims, imagery, policies), and known limitations.
+
+====================================================================
+16. VERIFICATION (MUST ACTUALLY BE RUN)
+====================================================================
+Run and report honestly:
+- Production build succeeds (astro build) and preview works; run type-check (astro check / tsc) and fix errors.
+- Every route loads; all nav/footer/internal links resolve (no dead links); 404 works.
+- Product cards open the correct detail page; invalid slug shows the not-found state.
+- Shop filters, sort, price range and pagination work, combined and cleared; empty state works.
+- Add to Cart works from cards, detail page and quiz results; quantity merges; header count updates; drawer works; cart page quantity +/-, remove, totals, empty state; localStorage persistence across refresh; corrupted/invalid localStorage handled; wishlist works.
+- Quiz: validation blocks empty progress, back keeps answers, results deterministic, restart works.
+- Journal search + category filter + pagination + article routes.
+- All forms: empty submission blocked; whitespace-only rejected; names with digits rejected; malformed emails rejected; phone rules; password rules and confirm-match; errors associated via aria; focus moves to first invalid field; success only when valid; no duplicate submit.
+- Dialogs/drawers/menus: Escape, focus trap, focus restoration, keyboard-only operation.
+- Rounded corners present on every listed container type; images clip correctly.
+- Hover/focus/selected/disabled/error states present.
+- No horizontal overflow at 390, 768 and 1440px; touch targets adequate.
+- Images load with alt text; no layout shift; no console errors/warnings.
+- Metadata, canonical URLs, sitemap.xml and robots.txt validated; JSON-LD validated against real content only.
+- Run automated accessibility checks (axe or equivalent) and Lighthouse where tooling exists, plus manual keyboard checks.
+- Side-by-side visual comparison of each page against its mockup; list any deviations and fix them.
+Finish with a candid report: what was tested and passed, what failed or could not be tested, remaining limitations, and placeholders that need real content. Do not state that all requirements pass unless each was verified.
+
+====================================================================
+17. WORKFLOW
+====================================================================
+1) Inspect the existing project. 2) Analyze the reference and write a short page-by-page layout spec (header height, container widths, image/text ratios, card proportions, columns, section spacing, type sizes, radii, divider thickness, button sizes, botanical placement). 3) Set up tokens, layout, header, footer, shared data and stores. 4) Build pages in order 1–9 plus 404 and policy pages. 5) Add interactions, validation, GSAP. 6) SEO, accessibility, performance pass. 7) Verify and fix. 8) Write the README and final honest report.
+
+Do not redesign the reference, omit pages, silently remove requirements, change the stack without telling me, or replace working features with placeholders. If anything conflicts or cannot be done in this environment, say so explicitly instead of working around it silently.

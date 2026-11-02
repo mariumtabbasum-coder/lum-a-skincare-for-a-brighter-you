@@ -1,0 +1,93 @@
+@import "tailwindcss";
+@import "./styles/tokens.css";
+@import "bootstrap/dist/css/bootstrap-grid.min.css";
+
+/* Luméa Custom System Overrides & Utilities */
+@layer utilities {
+  .bg-blush-pink { background-color: var(--color-blush-pink); }
+  .bg-soft-pink { background-color: var(--color-soft-pink); }
+  .bg-mauve { background-color: var(--color-mauve); }
+  .bg-plum { background-color: var(--color-plum); }
+  .bg-deep-aubergine { background-color: var(--color-deep-aubergine); }
+  .bg-white-pink { background-color: var(--color-white-pink); }
+
+  .text-blush-pink { color: var(--color-blush-pink); }
+  .text-soft-pink { color: var(--color-soft-pink); }
+  .text-mauve { color: var(--color-mauve); }
+  .text-plum { color: var(--color-plum); }
+  .text-deep-aubergine { color: var(--color-deep-aubergine); }
+
+  .border-blush-pink { border-color: var(--color-blush-pink); }
+  .border-soft-pink { border-color: var(--color-soft-pink); }
+  .border-mauve { border-color: var(--color-mauve); }
+  .border-plum { border-color: var(--color-plum); }
+
+  .radius-sm { border-radius: var(--radius-sm); }
+  .radius-md { border-radius: var(--radius-md); }
+  .radius-lg { border-radius: var(--radius-lg); }
+  .radius-xl { border-radius: var(--radius-xl); }
+  .radius-pill { border-radius: var(--radius-pill); }
+}
+
+/* Global Luméa Responsive Container System (matches desktop & mobile fluidity) */
+.lumea-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .lumea-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lumea-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Custom Scrollbar for delicate pastel aesthetic */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-white-pink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-mauve);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-plum);
+}
+
+/* Zero border, outline & scrollbar reset for Chat Composer Textarea */
+.chat-composer-textarea {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+.chat-composer-textarea:focus,
+.chat-composer-textarea:focus-visible,
+.chat-composer-textarea:active {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.chat-composer-textarea::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}

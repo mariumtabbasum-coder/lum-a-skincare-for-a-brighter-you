@@ -1,0 +1,6 @@
+{
+  "name": "Luméa — Skincare for a Brighter You",
+  "description": "Clean, botanical skincare crafted for your natural glow. Discover thoughtfully formulated serums, creams, and personalized skincare routines.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
