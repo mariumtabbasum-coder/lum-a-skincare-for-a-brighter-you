@@ -4,8 +4,24 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
+  const repositoryName = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? '';
+  const isUserOrOrganizationSite = repositoryName.endsWith('.github.io');
+  const base = process.env.GITHUB_ACTIONS === 'true' && repositoryName && !isUserOrOrganizationSite
+    ? `/${repositoryName}/`
+    : '/';
+  const rewriteGithubPagesAssets = {
+    name: 'rewrite-github-pages-public-asset-paths',
+    enforce: 'pre' as const,
+    transform(source: string, id: string) {
+      const normalizedId = id.replaceAll('\\', '/');
+      if (base === '/' || !normalizedId.includes('/src/')) return null;
+      return source.replace(/(["'])\/assets\//g, (_match, quote: string) => `${quote}${base}assets/`);
+    },
+  };
+
   return {
-    plugins: [react(), tailwindcss()],
+    base,
+    plugins: [rewriteGithubPagesAssets, react(), tailwindcss()],
     resolve: {
       alias: {
         '@': path.resolve(import.meta.dirname, '.'),

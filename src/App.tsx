@@ -51,7 +51,7 @@ export default function App() {
 
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <ScrollToTop />
         <div className="min-h-screen flex flex-col bg-[#FFF7F7] text-[#3E2F3F] selection:bg-[#EFC6D8] selection:text-[#3E2F3F] w-full overflow-x-hidden">
           {/* Header */}

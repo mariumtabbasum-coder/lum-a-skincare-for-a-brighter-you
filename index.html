@@ -15,15 +15,19 @@
     <noscript><link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=optional" rel="stylesheet" /></noscript>
     <script>
       (() => {
-        const path = window.location.pathname.replace(/\/$/, '') || '/';
+        const basePath = '%BASE_URL%';
+        const pathname = window.location.pathname.startsWith(basePath)
+          ? window.location.pathname.slice(basePath.length - 1)
+          : window.location.pathname;
+        const path = pathname.replace(/\/$/, '') || '/';
         const heroImages = {
-          '/': ['/assets/aistudio/home-hero-model-portrait.webp'],
-          '/shop': ['/assets/articles/morning-vs-night-skincare-routine.webp'],
-          '/about': ['/assets/aistudio/account-model.webp'],
-          '/account': ['/assets/articles/how-to-build-a-natural-skincare-routine.webp'],
-          '/contact': ['/assets/aistudio/account_model_facial.webp'],
-          '/journal': ['/assets/articles/best-ingredients-for-healthy-skin.webp'],
-          '/skin-quiz': ['/assets/articles/skincare-for-different-skin-types.webp'],
+          '/': ['%BASE_URL%assets/aistudio/home-hero-model-portrait.webp'],
+          '/shop': ['%BASE_URL%assets/articles/morning-vs-night-skincare-routine.webp'],
+          '/about': ['%BASE_URL%assets/aistudio/account-model.webp'],
+          '/account': ['%BASE_URL%assets/articles/how-to-build-a-natural-skincare-routine.webp'],
+          '/contact': ['%BASE_URL%assets/aistudio/account_model_facial.webp'],
+          '/journal': ['%BASE_URL%assets/articles/best-ingredients-for-healthy-skin.webp'],
+          '/skin-quiz': ['%BASE_URL%assets/articles/skincare-for-different-skin-types.webp'],
         };
         for (const href of heroImages[path] || []) {
           const link = document.createElement('link');
@@ -31,7 +35,7 @@
           link.as = 'image';
           link.href = href;
           if (path === '/' && href.endsWith('/home-hero-model-portrait.webp')) {
-            link.imageSrcset = '/assets/aistudio/home-hero-model-portrait-640.webp 640w, /assets/aistudio/home-hero-model-portrait-840.webp 840w, /assets/aistudio/home-hero-model-portrait.webp 1052w';
+            link.imageSrcset = '%BASE_URL%assets/aistudio/home-hero-model-portrait-640.webp 640w, %BASE_URL%assets/aistudio/home-hero-model-portrait-840.webp 840w, %BASE_URL%assets/aistudio/home-hero-model-portrait.webp 1052w';
             link.imageSizes = '(max-width: 640px) calc(100vw - 2rem), (max-width: 1024px) 50vw, 40vw';
           }
           link.fetchPriority = 'high';
