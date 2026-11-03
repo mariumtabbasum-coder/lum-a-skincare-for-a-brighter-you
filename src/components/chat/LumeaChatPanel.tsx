@@ -11,6 +11,7 @@ import {
 import { ChatMessage, QuickReplyOption } from './types';
 import { ChatMessageItem } from './ChatMessageItem';
 import { QuickReplies } from './QuickReplies';
+import { createLocalChatResponse } from './localChatResponse';
 
 const INITIAL_QUICK_REPLIES: QuickReplyOption[] = [
   { label: '✨ Find products for my skin', actionText: 'Find products for my skin' },
@@ -55,7 +56,10 @@ export const LumeaChatPanel: React.FC<LumeaChatPanelProps> = ({
         const stored = sessionStorage.getItem(STORAGE_SESSION_KEY);
         if (stored) {
           const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            const messagesWithoutStaleErrors = parsed.filter((item) => item && !item.isError);
+            if (messagesWithoutStaleErrors.length > 0) return messagesWithoutStaleErrors;
+          }
         }
       } catch (err) {
         console.warn('Could not read chat history from sessionStorage', err);
@@ -189,23 +193,25 @@ export const LumeaChatPanel: React.FC<LumeaChatPanelProps> = ({
           text: m.text,
         }));
 
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: messageToSend,
-          history: historyPayload,
-        }),
-      });
+      let data: ReturnType<typeof createLocalChatResponse>;
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            message: messageToSend,
+            history: historyPayload,
+          }),
+        });
 
-      if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
-        throw new Error(errorData.error || `Server responded with ${res.status}`);
+        if (!res.ok) throw new Error(`Chat API returned ${res.status}`);
+        data = await res.json();
+      } catch {
+        // Static hosts such as GitHub Pages cannot run the Express chat endpoint.
+        data = createLocalChatResponse(messageToSend, historyPayload);
       }
-
-      const data = await res.json();
 
       const assistantMessage: ChatMessage = {
         id: `assistant-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,

@@ -108,7 +108,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, className = '
         <button
           onClick={handleAddToCart}
           aria-label={`Add ${product.name} to cart`}
-          className="absolute bottom-3.5 inset-x-3.5 py-3 bg-[#5D3A58] hover:bg-[#43263E] text-white rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-all duration-200 shadow-lg shadow-[#5D3A58]/30 backdrop-blur-xs transform translate-y-2 group-hover:translate-y-0 active:scale-95 cursor-pointer"
+          className="product-card-quick-add pointer-events-none absolute bottom-3.5 inset-x-3.5 py-3 bg-[#5D3A58] hover:bg-[#43263E] text-white rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition-all duration-200 shadow-lg shadow-[#5D3A58]/30 backdrop-blur-xs transform translate-y-2 group-hover:translate-y-0 active:scale-95 cursor-pointer"
         >
           <Plus className="w-4 h-4" />
           <span>Quick Add</span>

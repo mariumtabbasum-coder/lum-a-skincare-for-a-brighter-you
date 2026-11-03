@@ -2,6 +2,15 @@
 @import "./styles/tokens.css";
 @import "bootstrap/dist/css/bootstrap-grid.min.css";
 
+/* Touch screens have no hover state, so keep the existing Quick Add control visible and tappable. */
+@media (hover: none), (pointer: coarse) {
+  .product-card-quick-add {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+}
+
 /* Luméa Custom System Overrides & Utilities */
 @layer utilities {
   .bg-blush-pink { background-color: var(--color-blush-pink); }
