@@ -102,6 +102,33 @@ export function createLocalChatResponse(
   const asksUsage = /\b(how do i use|how to use|how do i apply|how should i apply|how to apply|when should i apply|how often|how do i layer|can i use|application|every day|daily)\b/.test(current);
   const asksPrice = /\b(price|cost|how much)\b/.test(current);
   const asksCompare = /\b(compare|difference between|versus|\bvs\b)\b/.test(current);
+  const asksPores = /\bpores?\b|open\s+pores?|enlarged\s+pores?|large\s+pores?/.test(current);
+  const isRomanUrdu = /\b(k liye|ke liye|kya|kiya|kru|karun|karoon|batao|mujhe|meri|chahiye|kaise|kese|hai|hain)\b/.test(current);
+
+  if (asksPores) {
+    const poreProducts = ['brightening-toner', 'exfoliating-scrub', 'clay-face-mask']
+      .map((slug) => PRODUCTS.find((product) => product.slug === slug))
+      .filter((product): product is Product => Boolean(product))
+      .filter((product) => !skinType || product.skinTypes.includes(skinType));
+    const recommendations = poreProducts.map((product) => toRecommendation(
+      product,
+      product.slug === 'brightening-toner'
+        ? 'Niacinamide and pore-refining benefits'
+        : product.slug === 'exfoliating-scrub'
+          ? '2% salicylic acid (BHA) and benefits for enlarged pores'
+          : 'Absorbs excess sebum and helps clear congested pores',
+    ));
+
+    return {
+      message: isRomanUrdu
+        ? 'Open pores ko permanently band nahi kiya ja sakta, lekin extra oil aur clogged pores kam karne se unki appearance behtar ho sakti hai. Gentle cleanser ke baad niacinamide ya salicylic acid (BHA) wala ek product dheere se routine mein shamil karo; ek waqt mein kai exfoliating products mat lagao aur din mein SPF use karo. Luméa catalog mein yeh options pores ke liye sab se relevant hain.'
+        : 'Pores cannot be permanently closed, but reducing excess oil and congestion can make them look less noticeable. After a gentle cleanse, introduce one pore-focused ingredient such as niacinamide or salicylic acid (BHA) gradually, avoid stacking exfoliants, and use SPF during the day. These Luméa catalog options are the closest matches for visible pores.',
+      followUpQuestion: isRomanUrdu
+        ? 'Tumhari skin oily, combination, dry ya sensitive hai?'
+        : 'Is your skin oily, combination, dry, or sensitive?',
+      recommendations,
+    };
+  }
 
   const ranked = PRODUCTS.map((product) => {
     let score = product.isBestseller ? 1 : 0;
