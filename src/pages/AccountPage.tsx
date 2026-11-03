@@ -216,7 +216,6 @@ export const AccountPage: React.FC = () => {
         title="Account & Member Sign In"
         description="Log in to your Luméa account for personalized rituals, saved wishlists, and order tracking."
         canonicalPath="/account"
-        noIndex
       />
 
       {/* Account Hero Header (Full-Width Edge-to-Edge with Blurred Background Image & Exact Wording) */}

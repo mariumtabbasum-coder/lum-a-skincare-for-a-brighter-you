@@ -27,6 +27,7 @@ const staticRoutes = [
   '/',
   '/about',
   '/shop',
+  '/account',
   '/skin-quiz',
   '/journal',
   '/contact'
@@ -71,10 +72,6 @@ console.log(`Successfully generated public/sitemap.xml with ${allUrls.length} UR
 
 const robotsTxt = `User-agent: *
 Allow: /
-Disallow: /cart
-Disallow: /checkout
-Disallow: /account
-
 Sitemap: ${SITE_URL}/sitemap.xml
 `;
 
