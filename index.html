@@ -11,9 +11,30 @@
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
-    <link rel="preload" as="image" href="/assets/aistudio/home-hero-model-portrait.webp" type="image/webp" fetchpriority="high" />
-    <link rel="preload" as="image" href="/assets/products/radiant-face-serum.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=optional" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=optional" rel="stylesheet" /></noscript>
+    <script>
+      (() => {
+        const path = window.location.pathname.replace(/\/$/, '') || '/';
+        const heroImages = {
+          '/': ['/assets/aistudio/home-hero-model-portrait.webp', '/assets/products/radiant-face-serum.webp'],
+          '/shop': ['/assets/articles/morning-vs-night-skincare-routine.webp'],
+          '/about': ['/assets/aistudio/account-model.webp'],
+          '/account': ['/assets/articles/how-to-build-a-natural-skincare-routine.webp'],
+          '/contact': ['/assets/aistudio/account_model_facial.webp'],
+          '/journal': ['/assets/articles/best-ingredients-for-healthy-skin.webp'],
+          '/skin-quiz': ['/assets/articles/skincare-for-different-skin-types.webp'],
+        };
+        for (const href of heroImages[path] || []) {
+          const link = document.createElement('link');
+          link.rel = 'preload';
+          link.as = 'image';
+          link.href = href;
+          link.fetchPriority = 'high';
+          document.head.appendChild(link);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
