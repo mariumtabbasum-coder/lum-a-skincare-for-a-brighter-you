@@ -90,9 +90,9 @@ export const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div className="col-span-1 md:col-span-2 space-y-3">
-            <h3 className="font-heading text-sm font-semibold tracking-wider text-[#EFC6D8]">
+            <h2 className="font-heading text-sm font-semibold tracking-wider text-[#EFC6D8]">
               Quick Links
-            </h3>
+            </h2>
             <ul className="space-y-2 text-xs text-[#FFF7F7]/80">
               <li>
                 <Link to="/" className="hover:text-[#EFC6D8] transition-colors">Home</Link>
@@ -117,9 +117,9 @@ export const Footer: React.FC = () => {
 
           {/* Customer Care */}
           <div className="col-span-1 md:col-span-2 space-y-3">
-            <h3 className="font-heading text-sm font-semibold tracking-wider text-[#EFC6D8]">
+            <h2 className="font-heading text-sm font-semibold tracking-wider text-[#EFC6D8]">
               Customer Care
-            </h3>
+            </h2>
             <ul className="space-y-2 text-xs text-[#FFF7F7]/80">
               <li>
                 <Link to="/contact#faq" className="hover:text-[#EFC6D8] transition-colors">FAQ</Link>
@@ -141,9 +141,9 @@ export const Footer: React.FC = () => {
 
           {/* Glow Club Newsletter */}
           <div className="col-span-1 sm:col-span-2 md:col-span-4 space-y-3">
-            <h3 className="font-heading text-sm font-semibold tracking-wider text-[#EFC6D8]">
+            <h2 className="font-heading text-sm font-semibold tracking-wider text-[#EFC6D8]">
               Join Our Glow Club
-            </h3>
+            </h2>
             <p className="text-xs text-[#FFF7F7]/75 leading-relaxed">
               Get exclusive offers, skincare rituals, and botanical tips delivered to your inbox.
             </p>

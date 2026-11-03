@@ -1,5 +1,5 @@
 import { HeroImageBackground } from '../components/common/HeroImageBackground';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Sparkles, ShieldCheck, HeartHandshake, Leaf, Package, Check } from 'lucide-react';
 import { SEOHead } from '../lib/seo';
@@ -9,55 +9,9 @@ import { validateEmail } from '../lib/validation';
 
 export const HomePage: React.FC = () => {
   const bestsellers = getBestsellers();
-  const heroRef = useRef<HTMLDivElement>(null);
   const [communityEmail, setCommunityEmail] = useState('');
   const [communityError, setCommunityError] = useState('');
   const [communitySuccess, setCommunitySuccess] = useState(false);
-
-  // GSAP Hero Entrance & Subtle Botanical Animation
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
-
-    let cancelled = false;
-    let revertContext: (() => void) | undefined;
-
-    import('gsap').then(({ default: gsap }) => {
-      if (cancelled) return;
-
-      const ctx = gsap.context(() => {
-        const fadeInElements = heroRef.current?.querySelectorAll('.hero-fade-in');
-        if (fadeInElements && fadeInElements.length > 0) {
-          gsap.from(fadeInElements, {
-            opacity: 0,
-            y: 20,
-            duration: 0.85,
-            stagger: 0.12,
-            ease: 'power2.out',
-            clearProps: 'opacity,transform'
-          });
-        }
-
-        const driftElements = heroRef.current?.querySelectorAll('.botanical-drift');
-        if (driftElements && driftElements.length > 0) {
-          gsap.to(driftElements, {
-            y: -8,
-            duration: 3.2,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut'
-          });
-        }
-      }, heroRef);
-
-      revertContext = () => ctx.revert();
-    });
-
-    return () => {
-      cancelled = true;
-      revertContext?.();
-    };
-  }, []);
 
   const handleCommunitySubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -81,16 +35,15 @@ export const HomePage: React.FC = () => {
 
       {/* 1. Hero Section (Full-Width Edge-to-Edge with Blurred Theme Background Image & Exact Wording) */}
       <section
-        ref={heroRef}
         className="relative w-full overflow-hidden border-b border-[#F3DDE6] bg-[#FFF7F7]"
       >
         {/* Soft Theme-Matching Botanical Background Image (Blurred for optimal text contrast) */}
-        <HeroImageBackground src="/assets/articles/healthy-skin-happy-you-self-care-tips.webp" />
+        <HeroImageBackground src="/assets/products/radiant-face-serum.webp" />
         {/* Luméa Signature Rose-Plum Gradient Overlay for crisp text legibility */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#FFF5F8]/42 via-[#FFF8F9]/32 to-[#FDEEF3]/45 backdrop-blur-[1px]" />
         
         {/* Ambient botanical radial flourishes with drift animation */}
-        <div className="botanical-drift absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-[#EFC6D8]/40 to-transparent blur-3xl pointer-events-none" />
+        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-[#EFC6D8]/40 to-transparent blur-3xl pointer-events-none" />
         <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-gradient-to-tr from-[#F6E0E6]/50 to-transparent blur-3xl pointer-events-none" />
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-10 sm:py-16 lg:py-20">
@@ -98,12 +51,12 @@ export const HomePage: React.FC = () => {
             {/* Left Column Text & Action */}
             <div className="lg:col-span-7 space-y-5 sm:space-y-6 text-left">
               {/* Clean Kicker Badge (Mobile-optimized text & padding) */}
-              <div className="hero-fade-in inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-white/90 border border-[#F3DDE6] text-[#6B4B6B] text-[10px] sm:text-xs font-semibold tracking-normal sm:tracking-wider uppercase shadow-2xs max-w-full">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-white/90 border border-[#F3DDE6] text-[#6B4B6B] text-[10px] sm:text-xs font-semibold tracking-normal sm:tracking-wider uppercase shadow-2xs max-w-full">
                 <Sparkles className="w-3.5 h-3.5 text-[#6B4B6B] shrink-0" />
                 <span className="truncate">Clean Beauty • Natural Ingredients • Skincare for Life</span>
               </div>
 
-              <div className="hero-fade-in space-y-3">
+              <div className="space-y-3">
                 <h1 className="font-heading text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-[#3E2F3F] leading-[1.18] tracking-tight">
                   Pure Care for Naturally <span className="italic font-normal text-[#6B4B6B]">Radiant Skin</span>
                 </h1>
@@ -113,7 +66,7 @@ export const HomePage: React.FC = () => {
               </div>
 
               {/* Primary Action Buttons */}
-              <div className="hero-fade-in pt-2 flex flex-wrap items-center gap-3 sm:gap-4">
+              <div className="pt-2 flex flex-wrap items-center gap-3 sm:gap-4">
                 <Link
                   to="/shop"
                   className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 bg-[#5D3A58] hover:bg-[#43263E] text-white rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-300 shadow-md hover:shadow-lg shadow-[#5D3A58]/25 hover:-translate-y-0.5 active:scale-95 group cursor-pointer"
@@ -131,7 +84,7 @@ export const HomePage: React.FC = () => {
               </div>
 
               {/* Quick Trust Highlights */}
-              <div className="hero-fade-in pt-4 flex flex-wrap items-center gap-x-4 sm:gap-x-6 gap-y-2 text-[11px] sm:text-xs text-[#3E2F3F]/80 font-medium border-t border-[#F3DDE6]/90">
+              <div className="pt-4 flex flex-wrap items-center gap-x-4 sm:gap-x-6 gap-y-2 text-[11px] sm:text-xs text-[#3E2F3F]/80 font-medium border-t border-[#F3DDE6]/90">
                 <span className="flex items-center gap-1.5"><Leaf className="w-3.5 h-3.5 text-[#6B4B6B]" /> 100% Natural Ingredients</span>
                 <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-[#6B4B6B]" /> Dermatologist Approved</span>
                 <span className="flex items-center gap-1.5"><Package className="w-3.5 h-3.5 text-[#6B4B6B]" /> Recyclable Glass</span>
@@ -139,10 +92,10 @@ export const HomePage: React.FC = () => {
             </div>
 
             {/* Right Column Large Hero Visual (Enlarged prominent botanical portrait & serum) */}
-            <div className="hero-fade-in lg:col-span-5 flex justify-center lg:justify-end">
+            <div className="lg:col-span-5 flex justify-center lg:justify-end">
               <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-xl group">
-                {/* Floating Botanical Badge with subtle botanical-drift */}
-                <div className="botanical-drift absolute -top-3 -right-2 sm:-right-4 hidden sm:flex items-center gap-2 px-3.5 py-1.5 bg-white/95 backdrop-blur-md rounded-full border border-[#F3DDE6] shadow-lg z-20 pointer-events-none">
+                {/* Floating Botanical Badge with subtle */}
+                <div className="absolute -top-3 -right-2 sm:-right-4 hidden sm:flex items-center gap-2 px-3.5 py-1.5 bg-white/95 backdrop-blur-md rounded-full border border-[#F3DDE6] shadow-lg z-20 pointer-events-none">
                   <Sparkles className="w-3.5 h-3.5 text-[#6B4B6B]" />
                   <span className="text-[11px] font-semibold text-[#5D3A58]">Active Botanicals</span>
                 </div>

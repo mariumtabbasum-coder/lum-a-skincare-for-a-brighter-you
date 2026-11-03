@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Search, User, Heart, ShoppingBag, Menu, X, Sparkles } from 'lucide-react';
 import { LumeaLogo } from './LumeaLogo';
-import { SearchOverlay } from './SearchOverlay';
-import { CartDrawer } from './CartDrawer';
+const SearchOverlay = lazy(() => import('./SearchOverlay').then(module => ({ default: module.SearchOverlay })));
+const CartDrawer = lazy(() => import('./CartDrawer').then(module => ({ default: module.CartDrawer })));
 import { getCartState, CART_UPDATED_EVENT, CartState } from '../../lib/cart-store';
 import { getWishlist, WISHLIST_UPDATED_EVENT } from '../../lib/wishlist-store';
 
@@ -210,8 +210,16 @@ export const Header: React.FC = () => {
       <div className="h-[66px] sm:h-[80px] md:h-[86px] w-full shrink-0" aria-hidden="true" />
 
       {/* Global Modals */}
-      <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
-      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} cartState={cartState} />
+      {isSearchOpen && (
+        <Suspense fallback={null}>
+          <SearchOverlay isOpen onClose={() => setIsSearchOpen(false)} />
+        </Suspense>
+      )}
+      {isCartOpen && (
+        <Suspense fallback={null}>
+          <CartDrawer isOpen onClose={() => setIsCartOpen(false)} cartState={cartState} />
+        </Suspense>
+      )}
     </>
   );
 };

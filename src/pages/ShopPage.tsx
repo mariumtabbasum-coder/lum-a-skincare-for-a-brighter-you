@@ -347,7 +347,7 @@ export const ShopPage: React.FC = () => {
                   <div className="w-16 h-16 mx-auto bg-[#F6E0E6] rounded-full flex items-center justify-center text-[#6B4B6B]">
                     <Filter className="w-8 h-8 opacity-60" />
                   </div>
-                  <h3 className="font-heading text-xl text-[#3E2F3F]">No products match your filters</h3>
+                  <h2 className="font-heading text-xl text-[#3E2F3F]">No products match your filters</h2>
                   <p className="text-xs text-[#3E2F3F]/70 max-w-sm mx-auto">
                     Try adjusting your category, price range, or skin concern selection to explore more botanical options.
                   </p>

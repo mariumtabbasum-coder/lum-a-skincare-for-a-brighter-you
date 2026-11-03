@@ -59,8 +59,8 @@ export default function App() {
 
           {/* Main Routing Body */}
           <main className="flex-1" id="main-content">
-            <Suspense fallback={<div className="min-h-[50vh]" aria-busy="true" />}>
-            <Routes>
+            <Suspense fallback={<div className="min-h-screen" aria-busy="true" />}>
+              <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/shop" element={<ShopPage />} />
@@ -80,7 +80,7 @@ export default function App() {
 
               {/* 404 Catch-All */}
               <Route path="*" element={<NotFoundPage />} />
-            </Routes>
+              </Routes>
             </Suspense>
           </main>
 

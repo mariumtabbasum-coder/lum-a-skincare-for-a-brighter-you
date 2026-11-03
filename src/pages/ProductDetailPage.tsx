@@ -313,7 +313,7 @@ export const ProductDetailPage: React.FC = () => {
               <div className="space-y-4">
                 <p>{product.description}</p>
                 <div className="space-y-2 pt-2">
-                  <h3 className="font-heading text-base text-[#3E2F3F] font-semibold">Formula Highlights:</h3>
+                  <h2 className="font-heading text-base text-[#3E2F3F] font-semibold">Formula Highlights:</h2>
                   <ul className="list-disc pl-5 space-y-1">
                     {product.benefits.map((b, idx) => (
                       <li key={idx}>{b}</li>
