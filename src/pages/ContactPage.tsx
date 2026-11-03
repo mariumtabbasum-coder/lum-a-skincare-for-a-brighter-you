@@ -137,7 +137,7 @@ export const ContactPage: React.FC = () => {
         {/* Soft Botanical Background Image (Blurred for optimal contrast) */}
         <HeroVideoBackground />
         {/* Luméa Signature Rose-Plum Gradient Overlay for crisp text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#FFF5F8]/95 via-[#FFF8F9]/88 to-[#FDEEF3]/95 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FFF5F8]/65 via-[#FFF8F9]/55 to-[#FDEEF3]/68 backdrop-blur-[1px]" />
 
         {/* Ambient botanical radial flourishes */}
         <div className="absolute top-0 right-0 w-80 h-80 bg-radial from-[#F7D3E2]/40 via-transparent to-transparent rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />

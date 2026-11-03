@@ -3,7 +3,7 @@ import React from 'react';
 /** Soft, decorative skincare footage behind page hero content. */
 export const HeroVideoBackground: React.FC = () => (
   <video
-    className="absolute inset-0 w-full h-full object-cover object-center blur-[5px] opacity-25 scale-105 pointer-events-none"
+    className="absolute inset-0 w-full h-full object-cover object-center blur-[5px] opacity-40 scale-105 pointer-events-none"
     autoPlay
     muted
     loop

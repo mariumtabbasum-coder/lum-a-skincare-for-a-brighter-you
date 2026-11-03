@@ -18,7 +18,7 @@ export const AboutPage: React.FC = () => {
         {/* Soft Theme-Matching Botanical Background Image (Blurred for optimal contrast) */}
         <HeroVideoBackground />
         {/* Luméa Signature Pastel Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#FFF5F8]/95 via-[#FFF8F9]/88 to-[#FDEEF3]/95 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FFF5F8]/65 via-[#FFF8F9]/55 to-[#FDEEF3]/68 backdrop-blur-[1px]" />
 
         {/* Ambient botanical radial flourishes */}
         <div className="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-gradient-to-br from-[#EFC6D8]/40 to-transparent blur-3xl pointer-events-none" />
