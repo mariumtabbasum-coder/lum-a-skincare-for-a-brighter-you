@@ -222,7 +222,7 @@ export const AccountPage: React.FC = () => {
       {/* Account Hero Header (Full-Width Edge-to-Edge with Blurred Background Image & Exact Wording) */}
       <section className="relative w-full overflow-hidden border-b border-[#F3DDE6] bg-[#FFF7F7]">
         {/* Soft Botanical Background Image (Blurred for optimal contrast) */}
-        <HeroImageBackground src="/assets/aistudio/home-hero-model-clean.webp" />
+        <HeroImageBackground src="/assets/articles/how-to-build-a-natural-skincare-routine.webp" />
         {/* Luméa Signature Rose-Plum Gradient Overlay for crisp text legibility */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#FFF5F8]/42 via-[#FFF8F9]/32 to-[#FDEEF3]/45 backdrop-blur-[1px]" />
 
