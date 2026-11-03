@@ -1,4 +1,4 @@
-import { HeroVideoBackground } from '../components/common/HeroVideoBackground';
+import { HeroImageBackground } from '../components/common/HeroImageBackground';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Leaf, Recycle, Users, Sparkles } from 'lucide-react';
@@ -16,9 +16,9 @@ export const AboutPage: React.FC = () => {
       {/* 1. Hero Section (Full-Width Edge-to-Edge with Blurred Theme Background Image & Exact Wording) */}
       <section className="relative w-full overflow-hidden border-b border-[#F3DDE6] bg-[#FFF7F7]">
         {/* Soft Theme-Matching Botanical Background Image (Blurred for optimal contrast) */}
-        <HeroVideoBackground src="https://videos.pexels.com/video-files/12013107/12013107-hd_1920_1080_25fps.mp4" />
+        <HeroImageBackground src="/assets/aistudio/account-model.webp" />
         {/* Luméa Signature Pastel Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#FFF5F8]/48 via-[#FFF8F9]/38 to-[#FDEEF3]/50 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FFF5F8]/42 via-[#FFF8F9]/32 to-[#FDEEF3]/45 backdrop-blur-[1px]" />
 
         {/* Ambient botanical radial flourishes */}
         <div className="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-gradient-to-br from-[#EFC6D8]/40 to-transparent blur-3xl pointer-events-none" />
