@@ -58,7 +58,7 @@ export default function App() {
           <Header />
 
           {/* Main Routing Body */}
-          <main className="flex-1 pt-[66px] sm:pt-[80px] md:pt-[86px]" id="main-content">
+          <main className="flex-1" id="main-content">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />

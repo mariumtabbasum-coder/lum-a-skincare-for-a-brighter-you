@@ -1,3 +1,4 @@
+import { HeroVideoBackground } from '../components/common/HeroVideoBackground';
 import React, { useState, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Filter, X, ChevronDown, ChevronRight, SlidersHorizontal, RotateCcw } from 'lucide-react';
@@ -105,12 +106,7 @@ export const ShopPage: React.FC = () => {
       {/* 1. Collection Hero Header (Full-Width Edge-to-Edge with Blurred Botanical Background Image & Exact Wording) */}
       <section className="relative w-full overflow-hidden border-b border-[#F3DDE6] bg-[#FFF7F7]">
         {/* Soft Theme-Matching Botanical Background Image (Blurred for optimal contrast) */}
-        <img
-          src="/assets/aistudio/image_b5870f3b.png"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-center filter blur-[5px] opacity-25 scale-105 select-none pointer-events-none"
-        />
+        <HeroVideoBackground />
         {/* Luméa Signature Rose-Plum Gradient Overlay for crisp text legibility */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#FFF5F8]/95 via-[#FFF8F9]/88 to-[#FDEEF3]/95 backdrop-blur-[1px]" />
 

@@ -1,3 +1,4 @@
+import { HeroVideoBackground } from '../components/common/HeroVideoBackground';
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { Heart, Package, Sparkles, CheckCircle2, ArrowRight, Tag, X } from 'lucide-react';
@@ -221,12 +222,7 @@ export const AccountPage: React.FC = () => {
       {/* Account Hero Header (Full-Width Edge-to-Edge with Blurred Background Image & Exact Wording) */}
       <section className="relative w-full overflow-hidden border-b border-[#F3DDE6] bg-[#FFF7F7]">
         {/* Soft Botanical Background Image (Blurred for optimal contrast) */}
-        <img
-          src="/assets/aistudio/image_02a75a6f.png"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-center filter blur-[5px] opacity-25 scale-105 select-none pointer-events-none"
-        />
+        <HeroVideoBackground />
         {/* Luméa Signature Rose-Plum Gradient Overlay for crisp text legibility */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#FFF5F8]/95 via-[#FFF8F9]/88 to-[#FDEEF3]/95 backdrop-blur-[1px]" />
 

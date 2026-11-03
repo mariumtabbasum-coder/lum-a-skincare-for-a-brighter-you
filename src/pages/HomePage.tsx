@@ -1,3 +1,4 @@
+import { HeroVideoBackground } from '../components/common/HeroVideoBackground';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Sparkles, ShieldCheck, HeartHandshake, Leaf, Package, Check } from 'lucide-react';
@@ -74,12 +75,7 @@ export const HomePage: React.FC = () => {
         className="relative w-full overflow-hidden border-b border-[#F3DDE6] bg-[#FFF7F7]"
       >
         {/* Soft Theme-Matching Botanical Background Image (Blurred for optimal text contrast) */}
-        <img
-          src="/assets/aistudio/image_8a52eaf6.png"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-center filter blur-[5px] opacity-25 scale-105 select-none pointer-events-none"
-        />
+        <HeroVideoBackground />
         {/* Luméa Signature Rose-Plum Gradient Overlay for crisp text legibility */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#FFF5F8]/95 via-[#FFF8F9]/88 to-[#FDEEF3]/95 backdrop-blur-[1px]" />
         

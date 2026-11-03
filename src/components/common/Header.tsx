@@ -183,14 +183,14 @@ export const Header: React.FC = () => {
                   </NavLink>
                 ))}
 
-                <Link
+                <NavLink
                   to="/account"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-sm font-medium py-2.5 px-3.5 rounded-xl text-[#3E2F3F] hover:bg-[#F6E0E6]/40 flex items-center justify-between"
+                  className={({ isActive }) => `text-sm font-medium py-2.5 px-3.5 rounded-xl transition-colors flex items-center justify-between ${isActive ? 'bg-[#F6E0E6] text-[#6B4B6B] font-semibold' : 'text-[#3E2F3F] hover:bg-[#F6E0E6]/40'}`}
                 >
                   <span>My Account</span>
                   <User className="w-4 h-4 text-[#6B4B6B]" />
-                </Link>
+                </NavLink>
 
                 <Link
                   to="/skin-quiz"
