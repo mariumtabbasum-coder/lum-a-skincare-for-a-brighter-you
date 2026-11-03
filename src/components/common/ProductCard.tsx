@@ -108,7 +108,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, className = '
       {/* Product Info */}
       <div className="flex flex-col flex-1 justify-between px-1">
         <div>
-          <span className="text-[11px] uppercase tracking-wider text-[#9E6B89] font-semibold block mb-1.5 group-hover:text-[#6B4B6B] transition-colors">
+          <span className="text-[11px] uppercase tracking-wider text-[#76536B] font-semibold block mb-1.5 group-hover:text-[#6B4B6B] transition-colors">
             {product.category}
           </span>
           <Link
@@ -128,7 +128,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, className = '
                 />
               ))}
             </div>
-            <span className="text-[11px] font-medium text-[#9E6B89]">({product.reviewCount} reviews)</span>
+            <span className="text-[11px] font-medium text-[#76536B]">({product.reviewCount} reviews)</span>
           </div>
         </div>
 

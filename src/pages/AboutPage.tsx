@@ -58,7 +58,7 @@ export const AboutPage: React.FC = () => {
       <section id="journey" className="py-12 sm:py-16 bg-[#FFF7F7]">
         <div className="lumea-container">
           <div className="text-center max-w-xl mx-auto mb-10 sm:mb-12">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#9E6B89]">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#76536B]">
               Evolution
             </span>
             <h2 className="font-heading text-3xl sm:text-4xl text-[#3E2F3F] mt-1">
@@ -119,7 +119,7 @@ export const AboutPage: React.FC = () => {
       <section className="py-14 sm:py-18 bg-white border-y border-[#F6E0E6]">
         <div className="lumea-container">
           <div className="text-center max-w-xl mx-auto mb-12 sm:mb-14">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#9E6B89]">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#76536B]">
               Principles
             </span>
             <h2 className="font-heading text-3xl sm:text-4xl text-[#3E2F3F] mt-1">

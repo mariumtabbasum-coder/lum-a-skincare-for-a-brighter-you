@@ -288,7 +288,7 @@ export const ShopPage: React.FC = () => {
                   }}
                   className="w-full accent-[#6B4B6B] cursor-pointer"
                 />
-                <div className="flex justify-between text-[10px] text-[#C39DB8]">
+                <div className="flex justify-between text-[10px] text-[#79566E]">
                   <span>$15</span>
                   <span>$100</span>
                 </div>

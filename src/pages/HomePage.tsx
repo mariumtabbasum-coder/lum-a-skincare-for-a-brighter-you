@@ -2,7 +2,6 @@ import { HeroImageBackground } from '../components/common/HeroImageBackground';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Sparkles, ShieldCheck, HeartHandshake, Leaf, Package, Check } from 'lucide-react';
-import gsap from 'gsap';
 import { SEOHead } from '../lib/seo';
 import { getBestsellers } from '../data/products';
 import { ProductCard } from '../components/common/ProductCard';
@@ -11,7 +10,6 @@ import { validateEmail } from '../lib/validation';
 export const HomePage: React.FC = () => {
   const bestsellers = getBestsellers();
   const heroRef = useRef<HTMLDivElement>(null);
-  const headlineRef = useRef<HTMLHeadingElement>(null);
   const [communityEmail, setCommunityEmail] = useState('');
   const [communityError, setCommunityError] = useState('');
   const [communitySuccess, setCommunitySuccess] = useState(false);
@@ -21,32 +19,44 @@ export const HomePage: React.FC = () => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
-    const ctx = gsap.context(() => {
-      const fadeInElements = heroRef.current?.querySelectorAll('.hero-fade-in');
-      if (fadeInElements && fadeInElements.length > 0) {
-        gsap.from(fadeInElements, {
-          opacity: 0,
-          y: 20,
-          duration: 0.85,
-          stagger: 0.12,
-          ease: 'power2.out',
-          clearProps: 'opacity,transform'
-        });
-      }
+    let cancelled = false;
+    let revertContext: (() => void) | undefined;
 
-      const driftElements = heroRef.current?.querySelectorAll('.botanical-drift');
-      if (driftElements && driftElements.length > 0) {
-        gsap.to(driftElements, {
-          y: -8,
-          duration: 3.2,
-          repeat: -1,
-          yoyo: true,
-          ease: 'sine.inOut'
-        });
-      }
-    }, heroRef);
+    import('gsap').then(({ default: gsap }) => {
+      if (cancelled) return;
 
-    return () => ctx.revert();
+      const ctx = gsap.context(() => {
+        const fadeInElements = heroRef.current?.querySelectorAll('.hero-fade-in');
+        if (fadeInElements && fadeInElements.length > 0) {
+          gsap.from(fadeInElements, {
+            opacity: 0,
+            y: 20,
+            duration: 0.85,
+            stagger: 0.12,
+            ease: 'power2.out',
+            clearProps: 'opacity,transform'
+          });
+        }
+
+        const driftElements = heroRef.current?.querySelectorAll('.botanical-drift');
+        if (driftElements && driftElements.length > 0) {
+          gsap.to(driftElements, {
+            y: -8,
+            duration: 3.2,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+          });
+        }
+      }, heroRef);
+
+      revertContext = () => ctx.revert();
+    });
+
+    return () => {
+      cancelled = true;
+      revertContext?.();
+    };
   }, []);
 
   const handleCommunitySubmit = (e: React.FormEvent) => {
@@ -184,9 +194,9 @@ export const HomePage: React.FC = () => {
               <div className="w-12 h-12 rounded-full bg-[#F6E0E6] group-hover:bg-[#5D3A58] text-[#5D3A58] group-hover:text-white flex items-center justify-center transition-colors duration-300 shadow-2xs">
                 <Leaf className="w-5 h-5" />
               </div>
-              <h3 className="text-sm font-semibold text-[#3E2F3F] tracking-wide group-hover:text-[#5D3A58] transition-colors">
+              <h2 className="text-sm font-semibold text-[#3E2F3F] tracking-wide group-hover:text-[#5D3A58] transition-colors">
                 100% Natural Ingredients
-              </h3>
+              </h2>
               <p className="text-xs text-[#3E2F3F]/70 leading-relaxed">Pure cold-pressed active botanicals</p>
             </div>
 
@@ -194,9 +204,9 @@ export const HomePage: React.FC = () => {
               <div className="w-12 h-12 rounded-full bg-[#F6E0E6] group-hover:bg-[#5D3A58] text-[#5D3A58] group-hover:text-white flex items-center justify-center transition-colors duration-300 shadow-2xs">
                 <ShieldCheck className="w-5 h-5" />
               </div>
-              <h3 className="text-sm font-semibold text-[#3E2F3F] tracking-wide group-hover:text-[#5D3A58] transition-colors">
+              <h2 className="text-sm font-semibold text-[#3E2F3F] tracking-wide group-hover:text-[#5D3A58] transition-colors">
                 Dermatologist Approved
-              </h3>
+              </h2>
               <p className="text-xs text-[#3E2F3F]/70 leading-relaxed">Hypoallergenic & non-comedogenic</p>
             </div>
 
@@ -204,9 +214,9 @@ export const HomePage: React.FC = () => {
               <div className="w-12 h-12 rounded-full bg-[#F6E0E6] group-hover:bg-[#5D3A58] text-[#5D3A58] group-hover:text-white flex items-center justify-center transition-colors duration-300 shadow-2xs">
                 <HeartHandshake className="w-5 h-5" />
               </div>
-              <h3 className="text-sm font-semibold text-[#3E2F3F] tracking-wide group-hover:text-[#5D3A58] transition-colors">
+              <h2 className="text-sm font-semibold text-[#3E2F3F] tracking-wide group-hover:text-[#5D3A58] transition-colors">
                 Cruelty Free
-              </h3>
+              </h2>
               <p className="text-xs text-[#3E2F3F]/70 leading-relaxed">Ethically sourced, never animal tested</p>
             </div>
 
@@ -214,9 +224,9 @@ export const HomePage: React.FC = () => {
               <div className="w-12 h-12 rounded-full bg-[#F6E0E6] group-hover:bg-[#5D3A58] text-[#5D3A58] group-hover:text-white flex items-center justify-center transition-colors duration-300 shadow-2xs">
                 <Package className="w-5 h-5" />
               </div>
-              <h3 className="text-sm font-semibold text-[#3E2F3F] tracking-wide group-hover:text-[#5D3A58] transition-colors">
+              <h2 className="text-sm font-semibold text-[#3E2F3F] tracking-wide group-hover:text-[#5D3A58] transition-colors">
                 Sustainable Packaging
-              </h3>
+              </h2>
               <p className="text-xs text-[#3E2F3F]/70 leading-relaxed">100% recyclable UV-protecting glass</p>
             </div>
 
@@ -372,7 +382,7 @@ export const HomePage: React.FC = () => {
                       placeholder="Your email address"
                       aria-label="Email for community updates"
                       aria-invalid={!!communityError}
-                      className="w-full px-5 py-3 sm:py-2.5 bg-white rounded-full text-xs text-[#3E2F3F] placeholder-[#C39DB8] focus:outline-none focus:ring-2 focus:ring-[#EFC6D8] sm:focus:ring-0 sm:pr-4 sm:flex-1 shadow-sm sm:shadow-none"
+                      className="w-full px-5 py-3 sm:py-2.5 bg-white rounded-full text-xs text-[#3E2F3F] placeholder-[#79566E] focus:outline-none focus:ring-2 focus:ring-[#EFC6D8] sm:focus:ring-0 sm:pr-4 sm:flex-1 shadow-sm sm:shadow-none"
                     />
                     <button
                       type="submit"

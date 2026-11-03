@@ -117,7 +117,7 @@ export const ProductDetailPage: React.FC = () => {
       {/* Breadcrumbs */}
       <nav className="bg-white border-b border-[#F6E0E6] py-3.5" aria-label="Breadcrumb">
         <div className="lumea-container">
-          <ol className="flex items-center space-x-2 text-xs text-[#C39DB8]">
+          <ol className="flex items-center space-x-2 text-xs text-[#79566E]">
             <li>
               <Link to="/" className="hover:text-[#6B4B6B] transition-colors">Home</Link>
             </li>
@@ -171,7 +171,7 @@ export const ProductDetailPage: React.FC = () => {
             {/* Right Product Details & Purchase Controls */}
             <div className="lg:col-span-6 space-y-6">
               <div>
-                <span className="text-xs uppercase tracking-widest text-[#C39DB8] font-semibold block mb-1">
+                <span className="text-xs uppercase tracking-widest text-[#79566E] font-semibold block mb-1">
                   {product.category}
                 </span>
                 <h1 className="font-heading text-3xl sm:text-4xl text-[#3E2F3F] leading-tight">
@@ -186,7 +186,7 @@ export const ProductDetailPage: React.FC = () => {
                     ))}
                   </div>
                   <span className="text-xs font-semibold text-[#3E2F3F]">{product.rating}</span>
-                  <span className="text-xs text-[#C39DB8]">({product.reviewCount} customer reviews)</span>
+                  <span className="text-xs text-[#79566E]">({product.reviewCount} customer reviews)</span>
                 </div>
 
                 {/* Price */}
@@ -325,7 +325,7 @@ export const ProductDetailPage: React.FC = () => {
 
             {activeTab === 'ingr' && (
               <div className="space-y-4">
-                <p className="text-xs text-[#C39DB8]">
+                <p className="text-xs text-[#79566E]">
                   Full transparent ingredient list formulated without parabens, phthalates, synthetic dyes, or sulfates.
                 </p>
                 <div className="flex flex-wrap gap-2 pt-2">
@@ -355,7 +355,7 @@ export const ProductDetailPage: React.FC = () => {
                 <div className="p-4 bg-[#FFF7F7] rounded-[16px] border border-[#F6E0E6] flex items-center justify-between">
                   <div>
                     <p className="font-heading text-lg text-[#3E2F3F]">Overall Customer Rating</p>
-                    <p className="text-xs text-[#C39DB8]">{product.rating} out of 5 stars based on {product.reviewCount} verified reviews</p>
+                    <p className="text-xs text-[#79566E]">{product.rating} out of 5 stars based on {product.reviewCount} verified reviews</p>
                   </div>
                   <span className="text-[11px] text-[#6B4B6B] font-semibold bg-[#F6E0E6] px-3 py-1 rounded-full">
                     Demo Feedback

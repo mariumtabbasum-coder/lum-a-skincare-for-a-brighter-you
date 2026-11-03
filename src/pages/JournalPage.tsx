@@ -147,7 +147,7 @@ export const JournalPage: React.FC = () => {
 
             {/* Search Bar Input */}
             <div className="relative max-w-xs sm:w-72 w-full">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9E6B89]" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#76536B]" />
               <input
                 type="search"
                 value={searchQuery}
@@ -157,7 +157,7 @@ export const JournalPage: React.FC = () => {
                 }}
                 placeholder="Search articles..."
                 aria-label="Search articles"
-                className="w-full pl-11 pr-4 py-2 bg-white border border-[#EFC6D8] rounded-full text-xs text-[#3E2F3F] placeholder-[#9E6B89]/75 focus:outline-none focus:border-[#6B4B6B] focus:ring-1 focus:ring-[#6B4B6B] shadow-2xs transition-all"
+                className="w-full pl-11 pr-4 py-2 bg-white border border-[#EFC6D8] rounded-full text-xs text-[#3E2F3F] placeholder-[#76536B]/75 focus:outline-none focus:border-[#6B4B6B] focus:ring-1 focus:ring-[#6B4B6B] shadow-2xs transition-all"
               />
             </div>
           </div>
@@ -232,7 +232,7 @@ export const JournalPage: React.FC = () => {
               <h2 className="font-heading text-2xl text-[#3E2F3F]">
                 {selectedCategory === 'All' ? 'Latest Stories' : `${selectedCategory} Articles`}
               </h2>
-              <span className="text-xs text-[#9E6B89]">
+              <span className="text-xs text-[#76536B]">
                 {filteredArticles.length} {filteredArticles.length === 1 ? 'Article' : 'Articles'}
               </span>
             </div>
@@ -277,14 +277,14 @@ export const JournalPage: React.FC = () => {
                       </div>
 
                       {/* Metadata Line matching reference image: Calendar Date + Comments Count & Copy Link */}
-                      <div className="flex items-center justify-between text-xs text-[#9E6B89] pt-3 border-t border-[#F6E0E6]/80 relative z-10">
+                      <div className="flex items-center justify-between text-xs text-[#76536B] pt-3 border-t border-[#F6E0E6]/80 relative z-10">
                         <span className="inline-flex items-center gap-1.5 font-sans">
-                          <Calendar className="w-3.5 h-3.5 text-[#B4829E] stroke-[1.7]" />
+                          <Calendar className="w-3.5 h-3.5 text-[#76536B] stroke-[1.7]" />
                           {art.date}
                         </span>
                         <div className="flex items-center gap-2">
                           <span className="inline-flex items-center gap-1.5 font-sans">
-                            <MessageSquare className="w-3.5 h-3.5 text-[#B4829E] stroke-[1.7]" />
+                            <MessageSquare className="w-3.5 h-3.5 text-[#76536B] stroke-[1.7]" />
                             {art.commentsCount ?? 0}
                           </span>
                           <div className="relative">
@@ -334,7 +334,7 @@ export const JournalPage: React.FC = () => {
                     </div>
 
                     {/* Decorative Botanical Watermark in bottom-right corner matching reference */}
-                    <div className="absolute -bottom-1 -right-1 w-12 h-12 pointer-events-none opacity-20 text-[#B4829E] select-none">
+                    <div className="absolute -bottom-1 -right-1 w-12 h-12 pointer-events-none opacity-20 text-[#76536B] select-none">
                       <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
                         <path d="M42 42C30 42 20 32 20 20C32 20 42 30 42 42Z" />
                         <path d="M20 20L42 42" />
@@ -346,7 +346,7 @@ export const JournalPage: React.FC = () => {
               </div>
             ) : (
               <div className="text-center py-16 bg-white rounded-[24px] border border-[#F6E0E6] p-8 space-y-3">
-                <Sparkles className="w-8 h-8 text-[#C39DB8] mx-auto" />
+                <Sparkles className="w-8 h-8 text-[#79566E] mx-auto" />
                 <h3 className="font-heading text-lg text-[#3E2F3F]">No articles found</h3>
                 <p className="text-xs text-[#3E2F3F]/70">Try adjusting your search query or choosing another category.</p>
                 <button

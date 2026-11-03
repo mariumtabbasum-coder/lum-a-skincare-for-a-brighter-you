@@ -418,7 +418,7 @@ export const CheckoutPage: React.FC = () => {
                         />
                         <div className="flex-1 min-w-0">
                           <p className="text-xs font-semibold text-[#3E2F3F] truncate">{item.product.name}</p>
-                          <p className="text-[11px] text-[#C39DB8]">Qty: {item.quantity}</p>
+                          <p className="text-[11px] text-[#79566E]">Qty: {item.quantity}</p>
                         </div>
                         <span className="text-xs font-semibold text-[#3E2F3F]">
                           ${item.itemTotal.toFixed(2)}
@@ -477,7 +477,7 @@ export const CheckoutPage: React.FC = () => {
                 <p className="text-[#3E2F3F]">
                   <strong>Confirmation sent to:</strong> {formData.email}
                 </p>
-                <p className="text-[#C39DB8] pt-1 text-[11px]">
+                <p className="text-[#79566E] pt-1 text-[11px]">
                   (Note: This is a frontend demonstration. No email was sent and no order was dispatched.)
                 </p>
               </div>

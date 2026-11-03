@@ -90,14 +90,14 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({ isOpen, onClose })
 
         {/* Input */}
         <div className="relative mt-4">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#C39DB8]" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#79566E]" />
           <input
             ref={inputRef}
             type="search"
             value={query}
             onChange={e => setQuery(e.target.value)}
             placeholder="Search serums, moisturizers, skin concerns, or journal..."
-            className="w-full pl-12 pr-4 py-3 bg-white border border-[#EFC6D8] rounded-[16px] text-[#3E2F3F] placeholder-[#C39DB8] focus:outline-none focus:border-[#6B4B6B] text-sm"
+            className="w-full pl-12 pr-4 py-3 bg-white border border-[#EFC6D8] rounded-[16px] text-[#3E2F3F] placeholder-[#79566E] focus:outline-none focus:border-[#6B4B6B] text-sm"
           />
         </div>
 
@@ -132,7 +132,7 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({ isOpen, onClose })
                       <p className="text-xs font-medium text-[#3E2F3F] truncate group-hover:text-[#6B4B6B]">
                         {p.name}
                       </p>
-                      <p className="text-[11px] text-[#C39DB8] capitalize">{p.category}</p>
+                      <p className="text-[11px] text-[#79566E] capitalize">{p.category}</p>
                       <p className="text-xs font-semibold text-[#6B4B6B]">${p.price.toFixed(2)}</p>
                     </div>
                   </Link>
@@ -158,9 +158,9 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({ isOpen, onClose })
                       <p className="text-xs font-medium text-[#3E2F3F] group-hover:text-[#6B4B6B]">
                         {a.title}
                       </p>
-                      <p className="text-[11px] text-[#C39DB8]">{a.category} • {a.readingTime}</p>
+                      <p className="text-[11px] text-[#79566E]">{a.category} • {a.readingTime}</p>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-[#C39DB8] group-hover:text-[#6B4B6B] transition-colors" />
+                    <ArrowRight className="w-4 h-4 text-[#79566E] group-hover:text-[#6B4B6B] transition-colors" />
                   </Link>
                 ))}
               </div>
@@ -169,7 +169,7 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({ isOpen, onClose })
 
           {!trimmed && (
             <div className="py-4 text-center">
-              <span className="text-xs text-[#C39DB8]">Popular searches:</span>
+              <span className="text-xs text-[#79566E]">Popular searches:</span>
               <div className="flex flex-wrap justify-center gap-2 mt-2">
                 {['Radiant Serum', 'Hydrating Moisturizer', 'Skin Quiz', 'Gentle Cleanser', 'SPF 50'].map(term => (
                   <button

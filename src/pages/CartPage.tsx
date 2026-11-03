@@ -106,7 +106,7 @@ export const CartPage: React.FC = () => {
                             className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-[16px] bg-[#FDF6F8] border border-[#F6E0E6] shrink-0"
                           />
                           <div className="space-y-1">
-                            <span className="text-[10px] text-[#C39DB8] uppercase font-semibold">
+                            <span className="text-[10px] text-[#79566E] uppercase font-semibold">
                               {item.product.category}
                             </span>
                             <Link
@@ -154,7 +154,7 @@ export const CartPage: React.FC = () => {
                           <button
                             onClick={() => removeFromCart(item.product.id)}
                             aria-label={`Remove ${item.product.name} from cart`}
-                            className="p-2 text-[#C39DB8] hover:text-red-500 transition-colors"
+                            className="p-2 text-[#79566E] hover:text-red-500 transition-colors"
                           >
                             <Trash2 className="w-4 h-4" />
                           </button>
@@ -249,7 +249,7 @@ export const CartPage: React.FC = () => {
                             Apply
                           </button>
                         </div>
-                        <p className="text-[10px] text-[#C39DB8]">
+                        <p className="text-[10px] text-[#79566E]">
                           Demo coupon codes: <strong className="text-[#6B4B6B]">GLOW10</strong> (10% off), <strong className="text-[#6B4B6B]">LUMEA20</strong> (20% off)
                         </p>
                       </form>

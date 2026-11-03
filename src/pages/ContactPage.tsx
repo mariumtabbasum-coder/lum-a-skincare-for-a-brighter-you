@@ -199,7 +199,7 @@ export const ContactPage: React.FC = () => {
                       <a href="mailto:hello@lumea.example" className="text-[#6B4B6B] hover:underline">
                         hello@lumea.example
                       </a>
-                      <p className="text-[10px] text-[#C39DB8]">(Documented placeholder)</p>
+                      <p className="text-[10px] text-[#79566E]">(Documented placeholder)</p>
                     </div>
                   </div>
 
@@ -212,7 +212,7 @@ export const ContactPage: React.FC = () => {
                       <a href="tel:+15550192834" className="text-[#6B4B6B] hover:underline">
                         +1 (555) 019-2834
                       </a>
-                      <p className="text-[10px] text-[#C39DB8]">Mon - Fri, 9am - 6pm EST</p>
+                      <p className="text-[10px] text-[#79566E]">Mon - Fri, 9am - 6pm EST</p>
                     </div>
                   </div>
 
@@ -446,7 +446,7 @@ export const ContactPage: React.FC = () => {
           {/* FAQ Accordion Section (id="faq" enhanced with selective jQuery) */}
           <div id="faq" className="space-y-6 pt-10 border-t border-[#F6E0E6]">
             <div className="text-center max-w-xl mx-auto space-y-2">
-              <span className="text-xs font-semibold uppercase tracking-widest text-[#C39DB8]">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#79566E]">
                 Got Questions?
               </span>
               <h2 className="font-heading text-3xl sm:text-4xl text-[#3E2F3F]">

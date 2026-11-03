@@ -87,14 +87,14 @@ export const JQueryPasswordToggle: React.FC<JQueryPasswordToggleProps> = ({
           hasError
             ? 'border-red-400 ring-1 ring-red-400/30'
             : 'border-[#EFC6D8] hover:border-[#6B4B6B]/60 focus:border-[#6B4B6B] focus:ring-2 focus:ring-[#6B4B6B]/15'
-        } rounded-[14px] text-xs text-[#3E2F3F] placeholder-[#C39DB8] transition-all duration-200 focus:outline-none hover:shadow-2xs`}
+        } rounded-[14px] text-xs text-[#3E2F3F] placeholder-[#79566E] transition-all duration-200 focus:outline-none hover:shadow-2xs`}
       />
 
       <button
         type="button"
         aria-label="Show password"
         aria-pressed="false"
-        className="toggle-pwd-btn absolute right-3 top-1/2 -translate-y-1/2 text-[#C39DB8] hover:text-[#6B4B6B] p-1.5 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6B4B6B]"
+        className="toggle-pwd-btn absolute right-3 top-1/2 -translate-y-1/2 text-[#79566E] hover:text-[#6B4B6B] p-1.5 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6B4B6B]"
       >
         <span className="icon-eye flex items-center justify-center">
           <Eye className="w-4 h-4" />

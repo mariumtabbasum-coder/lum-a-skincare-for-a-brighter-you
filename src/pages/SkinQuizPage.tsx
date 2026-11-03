@@ -267,7 +267,7 @@ export const SkinQuizPage: React.FC = () => {
                           </div>
                           <div>
                             <p className={`text-xs font-semibold transition-colors ${selected ? 'text-[#6B4B6B]' : 'text-[#3E2F3F] group-hover:text-[#6B4B6B]'}`}>{item.type}</p>
-                            <p className="text-[10px] text-[#C39DB8] leading-tight mt-0.5">{item.label}</p>
+                            <p className="text-[10px] text-[#79566E] leading-tight mt-0.5">{item.label}</p>
                           </div>
                         </button>
                       );
@@ -309,7 +309,7 @@ export const SkinQuizPage: React.FC = () => {
                           }`}
                         >
                           <p className={`text-xs font-semibold transition-colors ${selected ? 'text-[#6B4B6B]' : 'text-[#3E2F3F] group-hover:text-[#6B4B6B]'}`}>{item.concern}</p>
-                          <p className="text-[11px] text-[#C39DB8]">{item.label}</p>
+                          <p className="text-[11px] text-[#79566E]">{item.label}</p>
                         </button>
                       );
                     })}
@@ -347,7 +347,7 @@ export const SkinQuizPage: React.FC = () => {
                               : 'bg-white border-[#F6E0E6] hover:border-[#6B4B6B]/50 hover:bg-[#FDF6F8] hover:shadow-md hover:shadow-[#6B4B6B]/10 hover:-translate-y-1'
                           }`}
                         >
-                          <Clock className={`w-5 h-5 transition-transform group-hover:scale-110 ${selected ? 'text-[#6B4B6B]' : 'text-[#C39DB8] group-hover:text-[#6B4B6B]'}`} />
+                          <Clock className={`w-5 h-5 transition-transform group-hover:scale-110 ${selected ? 'text-[#6B4B6B]' : 'text-[#79566E] group-hover:text-[#6B4B6B]'}`} />
                           <p className={`text-xs font-semibold transition-colors ${selected ? 'text-[#6B4B6B]' : 'text-[#3E2F3F] group-hover:text-[#6B4B6B]'}`}>{item.time}</p>
                           <p className="text-[11px] text-[#3E2F3F]/70">{item.label}</p>
                         </button>
@@ -426,7 +426,7 @@ export const SkinQuizPage: React.FC = () => {
                               : 'bg-white border-[#F6E0E6] hover:border-[#6B4B6B]/50 hover:bg-[#FDF6F8] hover:shadow-md hover:shadow-[#6B4B6B]/10 hover:-translate-y-1'
                           }`}
                         >
-                          <Compass className={`w-5 h-5 transition-transform group-hover:scale-110 ${selected ? 'text-[#6B4B6B]' : 'text-[#C39DB8] group-hover:text-[#6B4B6B]'}`} />
+                          <Compass className={`w-5 h-5 transition-transform group-hover:scale-110 ${selected ? 'text-[#6B4B6B]' : 'text-[#79566E] group-hover:text-[#6B4B6B]'}`} />
                           <p className={`text-xs font-semibold transition-colors ${selected ? 'text-[#6B4B6B]' : 'text-[#3E2F3F] group-hover:text-[#6B4B6B]'}`}>{item.env}</p>
                           <p className="text-[11px] text-[#3E2F3F]/70">{item.label}</p>
                         </button>
@@ -452,7 +452,7 @@ export const SkinQuizPage: React.FC = () => {
                   disabled={currentStep === 1}
                   className={`inline-flex items-center gap-1.5 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-colors shrink-0 ${
                     currentStep === 1
-                      ? 'text-[#C39DB8] opacity-40 cursor-not-allowed'
+                      ? 'text-[#79566E] opacity-40 cursor-not-allowed'
                       : 'text-[#3E2F3F] hover:bg-[#F6E0E6]'
                   }`}
                 >

@@ -428,7 +428,7 @@ export const AccountPage: React.FC = () => {
                     <div className="pt-4 text-center space-y-3">
                       <div className="flex items-center gap-3">
                         <div className="flex-1 h-px bg-[#F6E0E6]" />
-                        <span className="text-[11px] text-[#C39DB8]">or continue with</span>
+                        <span className="text-[11px] text-[#79566E]">or continue with</span>
                         <div className="flex-1 h-px bg-[#F6E0E6]" />
                       </div>
 
@@ -667,7 +667,7 @@ export const AccountPage: React.FC = () => {
 
                 {wishlistItems.length === 0 ? (
                   <div className="text-center py-16 space-y-3">
-                    <Heart className="w-10 h-10 text-[#C39DB8] mx-auto" />
+                    <Heart className="w-10 h-10 text-[#79566E] mx-auto" />
                     <h3 className="font-heading text-lg text-[#3E2F3F]">Your wishlist is currently empty</h3>
                     <p className="text-xs text-[#3E2F3F]/70">Click the heart on any product card to save it here.</p>
                     <Link

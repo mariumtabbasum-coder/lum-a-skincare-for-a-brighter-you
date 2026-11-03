@@ -115,7 +115,7 @@ export const ArticleDetailPage: React.FC = () => {
               {article.title}
             </h1>
 
-            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 text-xs text-[#C39DB8] pt-1">
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 text-xs text-[#79566E] pt-1">
               <span className="flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5" />
                 {article.date}
@@ -159,7 +159,7 @@ export const ArticleDetailPage: React.FC = () => {
             ))}
 
             <div className="pt-6 border-t border-[#F6E0E6] flex items-center justify-between flex-wrap gap-4">
-              <span className="text-xs text-[#9E6B89] font-medium">
+              <span className="text-xs text-[#76536B] font-medium">
                 Share this ritual wisdom:
               </span>
               <div className="relative flex items-center gap-2">
@@ -221,7 +221,7 @@ export const ArticleDetailPage: React.FC = () => {
                     className="w-20 h-20 rounded-[14px] object-cover shrink-0"
                   />
                   <div>
-                    <span className="text-[10px] text-[#C39DB8] uppercase font-semibold block mb-1">{rel.category}</span>
+                    <span className="text-[10px] text-[#79566E] uppercase font-semibold block mb-1">{rel.category}</span>
                     <p className="font-heading text-sm text-[#3E2F3F] group-hover:text-[#6B4B6B] transition-colors line-clamp-2">
                       {rel.title}
                     </p>

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
@@ -12,26 +12,26 @@ import { Header } from './components/common/Header';
 import { Footer } from './components/common/Footer';
 import { ToastContainer } from './components/common/Toast';
 import { LumeaChatLauncher } from './components/chat/LumeaChatLauncher';
-import { LumeaChatPanel } from './components/chat/LumeaChatPanel';
+const LumeaChatPanel = lazy(() => import('./components/chat/LumeaChatPanel').then(module => ({ default: module.LumeaChatPanel })));
 
 // Pages
 import { HomePage } from './pages/HomePage';
-import { AboutPage } from './pages/AboutPage';
-import { ShopPage } from './pages/ShopPage';
-import { ProductDetailPage } from './pages/ProductDetailPage';
-import { SkinQuizPage } from './pages/SkinQuizPage';
-import { JournalPage } from './pages/JournalPage';
-import { ArticleDetailPage } from './pages/ArticleDetailPage';
-import { CartPage } from './pages/CartPage';
-import { CheckoutPage } from './pages/CheckoutPage';
-import { AccountPage } from './pages/AccountPage';
-import { ContactPage } from './pages/ContactPage';
-import { NotFoundPage } from './pages/NotFoundPage';
+const AboutPage = lazy(() => import('./pages/AboutPage').then(module => ({ default: module.AboutPage })));
+const ShopPage = lazy(() => import('./pages/ShopPage').then(module => ({ default: module.ShopPage })));
+const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage').then(module => ({ default: module.ProductDetailPage })));
+const SkinQuizPage = lazy(() => import('./pages/SkinQuizPage').then(module => ({ default: module.SkinQuizPage })));
+const JournalPage = lazy(() => import('./pages/JournalPage').then(module => ({ default: module.JournalPage })));
+const ArticleDetailPage = lazy(() => import('./pages/ArticleDetailPage').then(module => ({ default: module.ArticleDetailPage })));
+const CartPage = lazy(() => import('./pages/CartPage').then(module => ({ default: module.CartPage })));
+const CheckoutPage = lazy(() => import('./pages/CheckoutPage').then(module => ({ default: module.CheckoutPage })));
+const AccountPage = lazy(() => import('./pages/AccountPage').then(module => ({ default: module.AccountPage })));
+const ContactPage = lazy(() => import('./pages/ContactPage').then(module => ({ default: module.ContactPage })));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(module => ({ default: module.NotFoundPage })));
 
 // Legal Pages
-import { PrivacyPage } from './pages/legal/PrivacyPage';
-import { TermsPage } from './pages/legal/TermsPage';
-import { ShippingReturnsPage } from './pages/legal/ShippingReturnsPage';
+const PrivacyPage = lazy(() => import('./pages/legal/PrivacyPage').then(module => ({ default: module.PrivacyPage })));
+const TermsPage = lazy(() => import('./pages/legal/TermsPage').then(module => ({ default: module.TermsPage })));
+const ShippingReturnsPage = lazy(() => import('./pages/legal/ShippingReturnsPage').then(module => ({ default: module.ShippingReturnsPage })));
 
 /**
  * Ensures page scroll position resets to top on route change
@@ -59,6 +59,7 @@ export default function App() {
 
           {/* Main Routing Body */}
           <main className="flex-1" id="main-content">
+            <Suspense fallback={<div className="min-h-[50vh]" aria-busy="true" />}>
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
@@ -80,16 +81,18 @@ export default function App() {
               {/* 404 Catch-All */}
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
+            </Suspense>
           </main>
 
           {/* Shared Footer (Item 10) */}
           <Footer />
 
           {/* Luméa AI Skin Assistant Floating Widget & Panel */}
-          <LumeaChatPanel
-            isOpen={isChatOpen}
-            onClose={() => setIsChatOpen(false)}
-          />
+          {isChatOpen && (
+            <Suspense fallback={null}>
+              <LumeaChatPanel isOpen onClose={() => setIsChatOpen(false)} />
+            </Suspense>
+          )}
           <LumeaChatLauncher
             isOpen={isChatOpen}
             onToggle={() => setIsChatOpen((prev) => !prev)}

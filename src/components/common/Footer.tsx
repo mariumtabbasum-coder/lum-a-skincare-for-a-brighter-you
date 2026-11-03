@@ -169,7 +169,7 @@ export const Footer: React.FC = () => {
                     aria-describedby={error ? "footer-email-error" : undefined}
                     className={`w-full min-w-0 px-4 py-2.5 bg-[#6B4B6B]/30 border ${
                       error ? 'border-red-400' : 'border-[#C39DB8]/50'
-                    } rounded-full text-xs text-[#FFF7F7] placeholder-[#C39DB8] focus:outline-none focus:border-[#EFC6D8] transition-colors`}
+                    } rounded-full text-xs text-[#FFF7F7] placeholder-[#79566E] focus:outline-none focus:border-[#EFC6D8] transition-colors`}
                   />
                   <button
                     type="submit"

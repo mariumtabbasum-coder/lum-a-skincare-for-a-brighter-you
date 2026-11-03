@@ -114,12 +114,12 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, cartSta
                         <button
                           onClick={() => removeFromCart(item.product.id)}
                           aria-label={`Remove ${item.product.name} from cart`}
-                          className="text-[#C39DB8] hover:text-[#3E2F3F] transition-colors p-1"
+                          className="text-[#79566E] hover:text-[#3E2F3F] transition-colors p-1"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
                       </div>
-                      <p className="text-[11px] text-[#C39DB8] capitalize">{item.product.category}</p>
+                      <p className="text-[11px] text-[#79566E] capitalize">{item.product.category}</p>
                     </div>
 
                     <div className="flex items-center justify-between mt-2">
@@ -199,7 +199,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, cartSta
                 </button>
               </div>
 
-              <p className="text-[10px] text-center text-[#C39DB8]">
+              <p className="text-[10px] text-center text-[#79566E]">
                 Frontend demonstration — no real payment is processed.
               </p>
             </div>
