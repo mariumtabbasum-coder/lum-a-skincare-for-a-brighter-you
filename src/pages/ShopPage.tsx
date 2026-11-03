@@ -106,7 +106,7 @@ export const ShopPage: React.FC = () => {
       {/* 1. Collection Hero Header (Full-Width Edge-to-Edge with Blurred Botanical Background Image & Exact Wording) */}
       <section className="relative w-full overflow-hidden border-b border-[#F3DDE6] bg-[#FFF7F7]">
         {/* Soft Theme-Matching Botanical Background Image (Blurred for optimal contrast) */}
-        <HeroImageBackground src="/assets/products/radiant-face-serum.webp" />
+        <HeroImageBackground src="/assets/articles/morning-vs-night-skincare-routine.webp" />
         {/* Luméa Signature Rose-Plum Gradient Overlay for crisp text legibility */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#FFF5F8]/42 via-[#FFF8F9]/32 to-[#FDEEF3]/45 backdrop-blur-[1px]" />
 
