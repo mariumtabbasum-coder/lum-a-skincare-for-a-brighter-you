@@ -38,7 +38,7 @@ export const HomePage: React.FC = () => {
         className="relative w-full overflow-hidden border-b border-[#F3DDE6] bg-[#FFF7F7]"
       >
         {/* Soft Theme-Matching Botanical Background Image (Blurred for optimal text contrast) */}
-        <HeroImageBackground src="/assets/products/radiant-face-serum.webp" />
+        <HeroImageBackground src="/assets/aistudio/nature-circle-serum.webp" />
         {/* Luméa Signature Rose-Plum Gradient Overlay for crisp text legibility */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#FFF5F8]/42 via-[#FFF8F9]/32 to-[#FDEEF3]/45 backdrop-blur-[1px]" />
         
