@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "./styles/tokens.css";
-@import "bootstrap/dist/css/bootstrap-grid.min.css";
 
 /* Luméa Custom System Overrides & Utilities */
 @layer utilities {
