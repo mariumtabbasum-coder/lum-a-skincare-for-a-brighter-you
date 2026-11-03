@@ -106,9 +106,9 @@ export const ShopPage: React.FC = () => {
       {/* 1. Collection Hero Header (Full-Width Edge-to-Edge with Blurred Botanical Background Image & Exact Wording) */}
       <section className="relative w-full overflow-hidden border-b border-[#F3DDE6] bg-[#FFF7F7]">
         {/* Soft Theme-Matching Botanical Background Image (Blurred for optimal contrast) */}
-        <HeroVideoBackground />
+        <HeroVideoBackground src="https://videos.pexels.com/video-files/7011323/7011323-hd_1920_1080_25fps.mp4" />
         {/* Luméa Signature Rose-Plum Gradient Overlay for crisp text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#FFF5F8]/65 via-[#FFF8F9]/55 to-[#FDEEF3]/68 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FFF5F8]/48 via-[#FFF8F9]/38 to-[#FDEEF3]/50 backdrop-blur-[1px]" />
 
         {/* Ambient botanical radial flourishes */}
         <div className="absolute top-0 right-0 w-80 h-80 bg-radial from-[#F7D3E2]/40 via-transparent to-transparent rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
