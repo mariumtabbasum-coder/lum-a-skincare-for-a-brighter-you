@@ -4,6 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { GoogleGenAI, Type } from '@google/genai';
 import { PRODUCTS, Product } from './src/data/products';
+import { createLocalChatResponse } from './src/components/chat/localChatResponse';
 
 dotenv.config();
 
@@ -296,35 +297,8 @@ ${JSON.stringify(CATALOGUE_PROMPT_SUMMARY, null, 2)}
       }
     }
 
-    // Fallback: Local rule-based recommendation engine
-    const fallbackResult = localSkincareRecommender(trimmedMessage, safeHistory);
-    const enrichedRecs = fallbackResult.recommendations
-      .map((rec) => {
-        const prod = PRODUCTS.find((p) => p.id === rec.productId);
-        if (!prod) return null;
-        return {
-          productId: prod.id,
-          product: {
-            id: prod.id,
-            slug: prod.slug,
-            name: prod.name,
-            category: prod.category,
-            price: prod.price,
-            images: prod.images,
-            badge: prod.badge,
-            rating: prod.rating,
-            reviewCount: prod.reviewCount,
-          },
-          reason: rec.reason,
-        };
-      })
-      .filter(Boolean);
-
-    return res.json({
-      message: fallbackResult.message,
-      followUpQuestion: fallbackResult.followUpQuestion,
-      recommendations: enrichedRecs,
-    });
+    // Use the same intent-aware fallback in the server and browser.
+    return res.json(createLocalChatResponse(trimmedMessage, safeHistory));
   } catch (error: any) {
     console.error('Error in /api/chat endpoint:', error);
     return res.status(500).json({

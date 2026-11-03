@@ -23,6 +23,7 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, className = '' }) => {
   const [wishlisted, setWishlisted] = useState(false);
+  const [touchQuickAddRevealed, setTouchQuickAddRevealed] = useState(false);
 
   useEffect(() => {
     setWishlisted(isInWishlist(product.id));
@@ -62,6 +63,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, className = '
       <div className="relative w-full aspect-square bg-gradient-to-b from-[#FFF5F8] to-[#FCEAF0]/50 rounded-[22px] overflow-hidden mb-4 flex items-center justify-center border border-[#F6E0E6]/60 group-hover:border-[#EFC6D8] transition-colors">
         <Link
           to={`/shop/${product.slug}`}
+          onClick={(event) => {
+            const isTouchInput = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+            if (isTouchInput && !touchQuickAddRevealed) {
+              event.preventDefault();
+              setTouchQuickAddRevealed(true);
+            }
+          }}
           className="w-full h-full flex items-center justify-center focus:outline-none"
           tabIndex={-1}
           aria-hidden="true"
@@ -108,7 +116,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, className = '
         <button
           onClick={handleAddToCart}
           aria-label={`Add ${product.name} to cart`}
-          className="product-card-quick-add pointer-events-none absolute bottom-3.5 inset-x-3.5 py-3 bg-[#5D3A58] hover:bg-[#43263E] text-white rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition-all duration-200 shadow-lg shadow-[#5D3A58]/30 backdrop-blur-xs transform translate-y-2 group-hover:translate-y-0 active:scale-95 cursor-pointer"
+          className={`product-card-quick-add pointer-events-none absolute bottom-3.5 inset-x-3.5 py-3 bg-[#5D3A58] hover:bg-[#43263E] text-white rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition-all duration-200 shadow-lg shadow-[#5D3A58]/30 backdrop-blur-xs transform translate-y-2 group-hover:translate-y-0 active:scale-95 cursor-pointer ${touchQuickAddRevealed ? 'opacity-100 pointer-events-auto translate-y-0' : ''}`}
         >
           <Plus className="w-4 h-4" />
           <span>Quick Add</span>
