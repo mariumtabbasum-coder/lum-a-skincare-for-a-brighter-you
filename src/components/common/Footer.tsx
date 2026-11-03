@@ -39,13 +39,13 @@ export const Footer: React.FC = () => {
             </p>
 
             {/* Social Icons */}
-            <div className="flex items-center space-x-3 pt-2">
+            <div className="flex items-center space-x-2 pt-2">
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow Luméa on Instagram (Placeholder link)"
-                className="w-8 h-8 rounded-full bg-[#6B4B6B]/50 hover:bg-[#EFC6D8] hover:text-[#3E2F3F] flex items-center justify-center text-[#FFF7F7] transition-all duration-200 hover:scale-110 active:scale-90 hover:shadow-md"
+                className="w-12 h-12 rounded-full bg-[#6B4B6B]/50 hover:bg-[#EFC6D8] hover:text-[#3E2F3F] flex items-center justify-center text-[#FFF7F7] transition-all duration-200 hover:scale-110 active:scale-90 hover:shadow-md"
               >
                 <Instagram className="w-4 h-4" />
               </a>
@@ -54,7 +54,7 @@ export const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow Luméa on Facebook (Placeholder link)"
-                className="w-8 h-8 rounded-full bg-[#6B4B6B]/50 hover:bg-[#EFC6D8] hover:text-[#3E2F3F] flex items-center justify-center text-[#FFF7F7] transition-all duration-200 hover:scale-110 active:scale-90 hover:shadow-md"
+                className="w-12 h-12 rounded-full bg-[#6B4B6B]/50 hover:bg-[#EFC6D8] hover:text-[#3E2F3F] flex items-center justify-center text-[#FFF7F7] transition-all duration-200 hover:scale-110 active:scale-90 hover:shadow-md"
               >
                 <Facebook className="w-4 h-4" />
               </a>
@@ -63,7 +63,7 @@ export const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow Luméa on Pinterest (Placeholder link)"
-                className="w-8 h-8 rounded-full bg-[#6B4B6B]/50 hover:bg-[#EFC6D8] hover:text-[#3E2F3F] flex items-center justify-center text-[#FFF7F7] transition-all duration-200 hover:scale-110 active:scale-90 hover:shadow-md"
+                className="w-12 h-12 rounded-full bg-[#6B4B6B]/50 hover:bg-[#EFC6D8] hover:text-[#3E2F3F] flex items-center justify-center text-[#FFF7F7] transition-all duration-200 hover:scale-110 active:scale-90 hover:shadow-md"
               >
                 <span className="font-bold text-xs">P</span>
               </a>
@@ -72,7 +72,7 @@ export const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Subscribe to Luméa on YouTube (Placeholder link)"
-                className="w-8 h-8 rounded-full bg-[#6B4B6B]/50 hover:bg-[#EFC6D8] hover:text-[#3E2F3F] flex items-center justify-center text-[#FFF7F7] transition-all duration-200 hover:scale-110 active:scale-90 hover:shadow-md"
+                className="w-12 h-12 rounded-full bg-[#6B4B6B]/50 hover:bg-[#EFC6D8] hover:text-[#3E2F3F] flex items-center justify-center text-[#FFF7F7] transition-all duration-200 hover:scale-110 active:scale-90 hover:shadow-md"
               >
                 <Youtube className="w-4 h-4" />
               </a>
@@ -81,7 +81,7 @@ export const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow Luméa on X / Twitter (Placeholder link)"
-                className="w-8 h-8 rounded-full bg-[#6B4B6B]/50 hover:bg-[#EFC6D8] hover:text-[#3E2F3F] flex items-center justify-center text-[#FFF7F7] transition-all duration-200 hover:scale-110 active:scale-90 hover:shadow-md"
+                className="w-12 h-12 rounded-full bg-[#6B4B6B]/50 hover:bg-[#EFC6D8] hover:text-[#3E2F3F] flex items-center justify-center text-[#FFF7F7] transition-all duration-200 hover:scale-110 active:scale-90 hover:shadow-md"
               >
                 <Twitter className="w-4 h-4" />
               </a>

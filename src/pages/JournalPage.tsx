@@ -373,7 +373,7 @@ export const JournalPage: React.FC = () => {
                       type="button"
                       onClick={() => setCurrentPage(pNum)}
                       aria-current={currentPage === pNum ? 'page' : undefined}
-                      className={`w-8 h-8 rounded-full text-xs font-semibold transition-colors flex items-center justify-center cursor-pointer ${
+                      className={`w-12 h-12 rounded-full text-xs font-semibold transition-colors flex items-center justify-center cursor-pointer ${
                         currentPage === pNum
                           ? 'bg-[#5D3A58] text-white'
                           : 'bg-white text-[#3E2F3F] border border-[#F6E0E6] hover:bg-[#F6E0E6]'

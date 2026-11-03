@@ -41,8 +41,8 @@ export const LumeaLogo: React.FC<LumeaLogoProps> = ({
       <img
         src="/assets/aistudio/lumea-brandmark-transparent.png"
         alt="Luméa"
-        width={140}
-        height={50}
+        width={1133}
+        height={570}
         decoding="async"
         fetchPriority="high"
         className={`${config.markHeight} w-auto object-contain transition-transform duration-300 hover:scale-[1.02] ${

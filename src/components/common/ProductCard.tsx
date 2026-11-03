@@ -85,7 +85,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, className = '
           onClick={handleWishlistToggle}
           aria-label={wishlisted ? `Remove ${product.name} from wishlist` : `Add ${product.name} to wishlist`}
           aria-pressed={wishlisted}
-          className="absolute top-3.5 right-3.5 w-9 h-9 rounded-full bg-white/90 hover:bg-white backdrop-blur-xs flex items-center justify-center text-[#5D3A58] shadow-xs hover:shadow-md transition-all duration-200 hover:scale-110 active:scale-90 cursor-pointer"
+          className="absolute top-3.5 right-3.5 w-12 h-12 rounded-full bg-white/90 hover:bg-white backdrop-blur-xs flex items-center justify-center text-[#5D3A58] shadow-xs hover:shadow-md transition-all duration-200 hover:scale-110 active:scale-90 cursor-pointer"
         >
           <Heart
             className={`w-4 h-4 transition-colors ${

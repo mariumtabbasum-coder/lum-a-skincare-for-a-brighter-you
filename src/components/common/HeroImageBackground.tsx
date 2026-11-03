@@ -2,13 +2,9 @@ import React from 'react';
 
 /** Soft, decorative skincare imagery behind page hero content. */
 export const HeroImageBackground: React.FC<{ src: string }> = ({ src }) => (
-  <img
-    src={src}
-    alt=""
+  <div
     aria-hidden="true"
-    loading="eager"
-    fetchPriority="low"
-    decoding="async"
-    className="absolute inset-0 h-full w-full scale-[1.02] object-cover object-center opacity-35 blur-[2px] pointer-events-none select-none"
+    className="absolute inset-0 scale-[1.02] bg-cover bg-center opacity-35 blur-[2px] pointer-events-none select-none"
+    style={{ backgroundImage: `url("${src}")` }}
   />
 );

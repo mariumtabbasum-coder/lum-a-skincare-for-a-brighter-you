@@ -93,12 +93,12 @@ export const Header: React.FC = () => {
             </nav>
 
             {/* Right Action Icons & Mobile/Tablet Hamburger Menu — Aligned to Right on all viewports */}
-            <div className="flex items-center gap-1 sm:gap-1.5 md:gap-2 shrink-0">
+            <div className="flex items-center gap-0 sm:gap-1.5 md:gap-2 shrink-0">
               {/* Search Toggle */}
               <button
                 onClick={() => setIsSearchOpen(true)}
                 aria-label="Search products and articles"
-                className="p-1.5 sm:p-2 text-[#3E2F3F]/80 hover:text-[#6B4B6B] hover:bg-[#F6E0E6]/70 rounded-full transition-all duration-200 hover:scale-105 active:scale-90"
+                className="inline-flex items-center justify-center min-w-12 min-h-12 p-2.5 text-[#3E2F3F]/80 hover:text-[#6B4B6B] hover:bg-[#F6E0E6]/70 rounded-full transition-all duration-200 hover:scale-105 active:scale-90"
               >
                 <Search className="w-4 h-4 sm:w-[18px] sm:h-[18px]" strokeWidth={1.5} />
               </button>
@@ -107,7 +107,7 @@ export const Header: React.FC = () => {
               <Link
                 to="/account"
                 aria-label="Customer Account"
-                className="hidden sm:inline-flex p-1.5 sm:p-2 text-[#3E2F3F]/80 hover:text-[#6B4B6B] hover:bg-[#F6E0E6]/70 rounded-full transition-all duration-200 hover:scale-105 active:scale-90"
+                className="hidden sm:inline-flex items-center justify-center min-w-12 min-h-12 p-2 text-[#3E2F3F]/80 hover:text-[#6B4B6B] hover:bg-[#F6E0E6]/70 rounded-full transition-all duration-200 hover:scale-105 active:scale-90"
               >
                 <User className="w-4 h-4 sm:w-[18px] sm:h-[18px]" strokeWidth={1.5} />
               </Link>
@@ -116,7 +116,7 @@ export const Header: React.FC = () => {
               <Link
                 to="/account?tab=wishlist"
                 aria-label={`Wishlist (${wishlistCount} items)`}
-                className="p-1.5 sm:p-2 text-[#3E2F3F]/80 hover:text-[#6B4B6B] hover:bg-[#F6E0E6]/70 rounded-full transition-all duration-200 hover:scale-105 active:scale-90 relative"
+                className="inline-flex items-center justify-center min-w-12 min-h-12 p-2.5 text-[#3E2F3F]/80 hover:text-[#6B4B6B] hover:bg-[#F6E0E6]/70 rounded-full transition-all duration-200 hover:scale-105 active:scale-90 relative"
               >
                 <Heart
                   className={`w-4 h-4 sm:w-[18px] sm:h-[18px] transition-transform duration-200 ${
@@ -135,7 +135,7 @@ export const Header: React.FC = () => {
               <button
                 onClick={() => setIsCartOpen(true)}
                 aria-label={`Shopping bag (${cartState.itemCount} items)`}
-                className="p-1.5 sm:p-2 text-[#3E2F3F]/80 hover:text-[#6B4B6B] hover:bg-[#F6E0E6]/70 rounded-full transition-all duration-200 hover:scale-105 active:scale-90 relative"
+                className="inline-flex items-center justify-center min-w-12 min-h-12 p-2.5 text-[#3E2F3F]/80 hover:text-[#6B4B6B] hover:bg-[#F6E0E6]/70 rounded-full transition-all duration-200 hover:scale-105 active:scale-90 relative"
               >
                 <ShoppingBag className="w-4 h-4 sm:w-[18px] sm:h-[18px]" strokeWidth={1.5} />
                 {cartState.itemCount > 0 && (
@@ -150,7 +150,7 @@ export const Header: React.FC = () => {
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label="Toggle navigation menu"
                 aria-expanded={isMobileMenuOpen}
-                className="lg:hidden p-1.5 sm:p-2 text-[#6B4B6B] hover:text-[#3E2F3F] hover:bg-[#F6E0E6]/70 transition-colors rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6B4B6B]"
+                className="lg:hidden inline-flex items-center justify-center min-w-12 min-h-12 p-2 text-[#6B4B6B] hover:text-[#3E2F3F] hover:bg-[#F6E0E6]/70 transition-colors rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6B4B6B]"
               >
                 {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>

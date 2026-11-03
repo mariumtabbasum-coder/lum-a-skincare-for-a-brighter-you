@@ -248,7 +248,7 @@ export const ContactPage: React.FC = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={`Visit Luméa on ${item.label}`}
-                          className="w-8 h-8 rounded-full bg-[#FFF7F7] border border-[#EFC6D8] hover:bg-[#F6E0E6] flex items-center justify-center text-[#6B4B6B] transition-colors"
+                          className="w-12 h-12 rounded-full bg-[#FFF7F7] border border-[#EFC6D8] hover:bg-[#F6E0E6] flex items-center justify-center text-[#6B4B6B] transition-colors"
                         >
                           <Icon className="w-4 h-4" />
                         </a>

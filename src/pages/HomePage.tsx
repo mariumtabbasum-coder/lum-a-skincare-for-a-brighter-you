@@ -222,9 +222,12 @@ export const HomePage: React.FC = () => {
           <div className="relative rounded-[28px] sm:rounded-[36px] overflow-hidden bg-gradient-to-r from-[#5D3A58] via-[#6B4B6B] to-[#4E2E4A] p-8 sm:p-12 lg:p-16 text-white shadow-2xl border border-[#8C5E87]/30 transition-all duration-500">
             {/* Blurred Botanical Background Image */}
             <img
-              src="/assets/aistudio/image_b6ba22aa.png"
+              src="/assets/aistudio/image_b6ba22aa.webp"
               alt=""
               aria-hidden="true"
+              loading="lazy"
+              fetchPriority="low"
+              decoding="async"
               className="absolute inset-0 w-full h-full object-cover object-center filter blur-[6px] opacity-20 scale-110 pointer-events-none"
             />
             {/* Gradient Overlay */}

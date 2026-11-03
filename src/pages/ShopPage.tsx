@@ -374,7 +374,7 @@ export const ShopPage: React.FC = () => {
                         }}
                         aria-label={`Go to page ${pageNum}`}
                         aria-current={currentPage === pageNum ? 'page' : undefined}
-                        className={`w-9 h-9 rounded-full text-xs font-semibold transition-colors flex items-center justify-center ${
+                        className={`w-12 h-12 rounded-full text-xs font-semibold transition-colors flex items-center justify-center ${
                           currentPage === pageNum
                             ? 'bg-[#6B4B6B] text-white shadow-xs'
                             : 'bg-white hover:bg-[#F6E0E6] text-[#3E2F3F] border border-[#F6E0E6]'
@@ -392,7 +392,7 @@ export const ShopPage: React.FC = () => {
                         window.scrollTo({ top: 300, behavior: 'smooth' });
                       }}
                       aria-label="Go to next page"
-                      className="w-9 h-9 rounded-full bg-white hover:bg-[#F6E0E6] text-[#6B4B6B] border border-[#F6E0E6] flex items-center justify-center text-xs transition-colors"
+                      className="w-12 h-12 rounded-full bg-white hover:bg-[#F6E0E6] text-[#6B4B6B] border border-[#F6E0E6] flex items-center justify-center text-xs transition-colors"
                     >
                       <ChevronRight className="w-4 h-4" />
                     </button>
