@@ -30,6 +30,10 @@
           link.rel = 'preload';
           link.as = 'image';
           link.href = href;
+          if (path === '/' && href.endsWith('/home-hero-model-portrait.webp')) {
+            link.imageSrcset = '/assets/aistudio/home-hero-model-portrait-640.webp 640w, /assets/aistudio/home-hero-model-portrait-840.webp 840w, /assets/aistudio/home-hero-model-portrait.webp 1052w';
+            link.imageSizes = '(max-width: 640px) calc(100vw - 2rem), (max-width: 1024px) 50vw, 40vw';
+          }
           link.fetchPriority = 'high';
           document.head.appendChild(link);
         }

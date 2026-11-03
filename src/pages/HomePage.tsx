@@ -3,12 +3,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Sparkles, ShieldCheck, HeartHandshake, Leaf, Package, Check } from 'lucide-react';
 import { SEOHead } from '../lib/seo';
-import { getBestsellers } from '../data/products';
+import { HOME_BESTSELLERS } from '../data/home-bestsellers';
 import { ProductCard } from '../components/common/ProductCard';
 import { validateEmail } from '../lib/validation';
 
 export const HomePage: React.FC = () => {
-  const bestsellers = getBestsellers();
   const [communityEmail, setCommunityEmail] = useState('');
   const [communityError, setCommunityError] = useState('');
   const [communitySuccess, setCommunitySuccess] = useState(false);
@@ -106,7 +105,11 @@ export const HomePage: React.FC = () => {
                 {/* Main Hero Visual Card */}
                 <div className="relative rounded-[30px] sm:rounded-[38px] overflow-hidden border border-[#F3DDE6] shadow-2xl bg-white/90 backdrop-blur-xs">
                   <picture className="w-full h-auto block">
-                    <source srcSet="/assets/aistudio/home-hero-model-portrait.webp" type="image/webp" />
+                    <source
+                      srcSet="/assets/aistudio/home-hero-model-portrait-640.webp 640w, /assets/aistudio/home-hero-model-portrait-840.webp 840w, /assets/aistudio/home-hero-model-portrait.webp 1052w"
+                      sizes="(max-width: 640px) calc(100vw - 2rem), (max-width: 1024px) 50vw, 40vw"
+                      type="image/webp"
+                    />
                     <img
                       src="/assets/aistudio/home-hero-model-portrait.png"
                       alt="Luméa Radiant Skin Ritual & Face Serum"
@@ -209,7 +212,7 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            {bestsellers.map(product => (
+            {HOME_BESTSELLERS.map(product => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>

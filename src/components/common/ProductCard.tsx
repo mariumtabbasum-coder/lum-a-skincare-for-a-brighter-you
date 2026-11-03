@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, Star, Plus } from 'lucide-react';
-import { Product } from '../../data/products';
 import { addToCart } from '../../lib/cart-store';
 import { isInWishlist, toggleWishlist, WISHLIST_UPDATED_EVENT } from '../../lib/wishlist-store';
 import { showToast } from './Toast';
 
+export interface ProductCardData {
+  id: string;
+  slug: string;
+  name: string;
+  category: string;
+  price: number;
+  reviewCount: number;
+  badge?: string;
+  images: string[];
+}
+
 interface ProductCardProps {
-  product: Product;
+  product: ProductCardData;
   className?: string;
 }
 
