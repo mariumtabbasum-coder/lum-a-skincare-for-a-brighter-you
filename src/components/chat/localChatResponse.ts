@@ -12,7 +12,7 @@ const skinTypes = ['Dry', 'Oily', 'Combination', 'Sensitive', 'Normal'] as const
 type Concern = Product['concerns'][number];
 
 const concernTerms: Array<[string, Concern]> = [
-  ['dehydrat', 'Hydration'], ['hydration', 'Hydration'], ['dryness', 'Hydration'], ['dry skin', 'Hydration'],
+  ['dehydrat', 'Hydration'], ['hydration', 'Hydration'], ['dryness', 'Hydration'],
   ['acne', 'Acne'], ['blemish', 'Acne'], ['breakout', 'Acne'], ['pimple', 'Acne'],
   ['aging', 'Anti-Aging'], ['ageing', 'Anti-Aging'], ['wrinkle', 'Anti-Aging'], ['fine line', 'Anti-Aging'],
   ['bright', 'Brightening'], ['glow', 'Brightening'], ['dark spot', 'Brightening'], ['dull', 'Brightening'],
@@ -49,13 +49,19 @@ export function createLocalChatResponse(
   history: Array<{ role: string; text: string }> = [],
 ): LocalChatResponse {
   const current = message.trim().toLowerCase();
-  const context = `${history.map((item) => item.text).join(' ')} ${message}`.toLowerCase();
-  const skinType = skinTypes.find((type) => context.includes(type.toLowerCase()));
-  const concerns = [...new Set(concernTerms
-    .filter(([term]) => context.includes(term))
-    .map(([, concern]) => concern))];
+  const previousUserMessage = [...history].reverse().find((item) => item.role === 'user')?.text ?? '';
+  const isFollowUp = /\b(it|this|that|them|those|same|also)\b|\bwhat about\b|\band for\b/.test(current);
+  const isRoutine = /\b(routine|regimen|order of application|what order)\b/.test(current);
+  const previousContext = isFollowUp || isRoutine ? previousUserMessage.toLowerCase() : '';
+  const currentSkinType = skinTypes.find((type) => current.includes(type.toLowerCase()));
+  const skinType = currentSkinType ?? skinTypes.find((type) => previousContext.includes(type.toLowerCase()));
+  const currentConcerns = concernTerms.filter(([term]) => current.includes(term)).map(([, concern]) => concern);
+  const concerns = [...new Set((currentConcerns.length
+    ? currentConcerns
+    : concernTerms.filter(([term]) => previousContext.includes(term)).map(([, concern]) => concern))
+  )];
   const category = categoryTerms.find(([term]) => current.includes(term))?.[1]
-    ?? categoryTerms.find(([term]) => context.includes(term))?.[1];
+    ?? categoryTerms.find(([term]) => previousContext.includes(term))?.[1];
   const namedProducts = PRODUCTS.filter((product) =>
     current.includes(product.name.toLowerCase()) || current.includes(product.slug.replaceAll('-', ' ')),
   );
@@ -92,7 +98,6 @@ export function createLocalChatResponse(
     };
   }
 
-  const isRoutine = /\b(routine|regimen|order of application|what order)\b/.test(current);
   const asksIngredients = /\b(ingredient|ingredients|what is it made of|formula contains|does it contain|contains)\b/.test(current);
   const asksUsage = /\b(how do i use|how to use|how do i apply|how should i apply|how to apply|when should i apply|how often|how do i layer|can i use|application|every day|daily)\b/.test(current);
   const asksPrice = /\b(price|cost|how much)\b/.test(current);
