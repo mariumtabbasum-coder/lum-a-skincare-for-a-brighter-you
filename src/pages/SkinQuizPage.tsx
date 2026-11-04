@@ -31,6 +31,34 @@ interface QuizAnswers {
   environment: string;
 }
 
+type RoutineSteps = { cleanse: Product; treat: Product; moisturize: Product; protect: Product };
+
+const ROUTINE_PRODUCT_SLUGS: Record<string, Record<keyof RoutineSteps, string>> = {
+  Dry: {
+    cleanse: 'gentle-cleanser', treat: 'radiant-face-serum',
+    moisturize: 'moisture-boost-cream', protect: 'sunscreen-spf-50'
+  },
+  Oily: {
+    cleanse: 'exfoliating-scrub', treat: 'hyaluronic-acid-serum',
+    moisturize: 'daily-moisturizer', protect: 'sunscreen-spf-50'
+  },
+  Combination: {
+    cleanse: 'gentle-cleanser', treat: 'vitamin-c-serum',
+    moisturize: 'daily-moisturizer', protect: 'sunscreen-spf-50'
+  },
+  Sensitive: {
+    cleanse: 'gentle-cleanser', treat: 'bakuchiol-serum',
+    moisturize: 'calming-gel', protect: 'sunscreen-spf-50'
+  },
+  Normal: {
+    cleanse: 'gentle-cleanser', treat: 'radiant-face-serum',
+    moisturize: 'hydrating-moisturizer', protect: 'sunscreen-spf-50'
+  }
+};
+
+const getCatalogProduct = (slug: string): Product =>
+  PRODUCTS.find(product => product.slug === slug) ?? PRODUCTS[0];
+
 export const SkinQuizPage: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [answers, setAnswers] = useState<QuizAnswers>({
@@ -109,40 +137,24 @@ export const SkinQuizPage: React.FC = () => {
   };
 
   // Deterministic routine recommendation generator
-  const getRecommendedRoutine = (): {
-    cleanse: Product;
-    treat: Product;
-    moisturize: Product;
-    protect: Product;
-  } => {
-    // 1. Cleanser
-    const cleanse =
-      answers.skinType === 'Oily'
-        ? (PRODUCTS.find(p => p.slug === 'exfoliating-scrub') || PRODUCTS.find(p => p.category === 'Cleanser') || PRODUCTS[0])
-        : (PRODUCTS.find(p => p.slug === 'gentle-cleanser') || PRODUCTS.find(p => p.category === 'Cleanser') || PRODUCTS[0]);
+  const getRecommendedRoutine = (): RoutineSteps => {
+    const skinType = answers.skinType in ROUTINE_PRODUCT_SLUGS ? answers.skinType : 'Normal';
+    const productSlugs = ROUTINE_PRODUCT_SLUGS[skinType];
+    const preferredTreatment = getCatalogProduct(productSlugs.treat);
+    const concernTreatment = answers.concern
+      ? PRODUCTS.find(product => product.category === 'Serum'
+          && product.skinTypes.includes(skinType as Product['skinTypes'][number])
+          && product.concerns.includes(answers.concern as Product['concerns'][number]))
+      : undefined;
 
-    // 2. Treatment Serum
-    let treat = PRODUCTS.find(p => p.slug === 'radiant-face-serum') || PRODUCTS[0];
-    if (answers.concern === 'Anti-Aging') {
-      treat = PRODUCTS.find(p => p.slug === 'bakuchiol-serum') || PRODUCTS.find(p => p.slug === 'retinol-serum') || treat;
-    } else if (answers.concern === 'Brightening') {
-      treat = PRODUCTS.find(p => p.slug === 'vitamin-c-serum') || treat;
-    } else if (answers.concern === 'Acne') {
-      treat = PRODUCTS.find(p => p.slug === 'hyaluronic-acid-serum') || PRODUCTS.find(p => p.slug === 'peptide-serum') || treat;
-    }
-
-    // 3. Moisturizer
-    let moisturize = PRODUCTS.find(p => p.slug === 'hydrating-moisturizer') || PRODUCTS[0];
-    if (answers.skinType === 'Dry' || answers.texturePref === 'Rich Nourishing') {
-      moisturize = PRODUCTS.find(p => p.slug === 'night-repair-cream' || p.slug === 'collagen-cream') || moisturize;
-    } else if (answers.skinType === 'Oily' || answers.skinType === 'Sensitive') {
-      moisturize = PRODUCTS.find(p => p.slug === 'calming-gel' || p.slug === 'daily-moisturizer') || moisturize;
-    }
-
-    // 4. Sunscreen Protection
-    const protect = PRODUCTS.find(p => p.slug === 'sunscreen-spf-50') || PRODUCTS.find(p => p.category === 'Sunscreen') || PRODUCTS[0];
-
-    return { cleanse, treat, moisturize, protect };
+    return {
+      cleanse: getCatalogProduct(productSlugs.cleanse),
+      treat: concernTreatment ?? preferredTreatment,
+      moisturize: answers.texturePref === 'Rich Nourishing' && skinType !== 'Oily'
+        ? getCatalogProduct('night-repair-cream')
+        : getCatalogProduct(productSlugs.moisturize),
+      protect: getCatalogProduct(productSlugs.protect)
+    };
   };
 
   const routine = getRecommendedRoutine();
@@ -519,30 +531,33 @@ export const SkinQuizPage: React.FC = () => {
                   The 4 Pillars of Your Glow
                 </h3>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-6 lg:gap-8 items-stretch">
-                  <div className="min-w-0">
+                <div
+                  className="grid gap-6 lg:gap-8 items-stretch"
+                  style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 230px), 1fr))' }}
+                >
+                  <div className="min-w-0 flex flex-col">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B4B6B] block mb-2 text-center">
                       Step 1: Cleanse
                     </span>
-                    <ProductCard product={routine.cleanse} className="w-full min-w-0 h-full" />
+                    <ProductCard product={routine.cleanse} className="w-full min-w-0 h-full p-5 sm:p-6" />
                   </div>
-                  <div className="min-w-0">
+                  <div className="min-w-0 flex flex-col">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B4B6B] block mb-2 text-center">
                       Step 2: Treat
                     </span>
-                    <ProductCard product={routine.treat} className="w-full min-w-0 h-full" />
+                    <ProductCard product={routine.treat} className="w-full min-w-0 h-full p-5 sm:p-6" />
                   </div>
-                  <div className="min-w-0">
+                  <div className="min-w-0 flex flex-col">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B4B6B] block mb-2 text-center">
                       Step 3: Moisturize
                     </span>
-                    <ProductCard product={routine.moisturize} className="w-full min-w-0 h-full" />
+                    <ProductCard product={routine.moisturize} className="w-full min-w-0 h-full p-5 sm:p-6" />
                   </div>
-                  <div className="min-w-0">
+                  <div className="min-w-0 flex flex-col">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B4B6B] block mb-2 text-center">
                       Step 4: Protect
                     </span>
-                    <ProductCard product={routine.protect} className="w-full min-w-0 h-full" />
+                    <ProductCard product={routine.protect} className="w-full min-w-0 h-full p-5 sm:p-6" />
                   </div>
                 </div>
               </div>
