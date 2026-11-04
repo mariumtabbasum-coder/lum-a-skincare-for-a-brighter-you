@@ -519,30 +519,30 @@ export const SkinQuizPage: React.FC = () => {
                   The 4 Pillars of Your Glow
                 </h3>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 items-stretch">
-                  <div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-6 lg:gap-8 items-stretch">
+                  <div className="min-w-0">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B4B6B] block mb-2 text-center">
                       Step 1: Cleanse
                     </span>
-                    <ProductCard product={routine.cleanse} />
+                    <ProductCard product={routine.cleanse} className="w-full min-w-0 h-full" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B4B6B] block mb-2 text-center">
                       Step 2: Treat
                     </span>
-                    <ProductCard product={routine.treat} />
+                    <ProductCard product={routine.treat} className="w-full min-w-0 h-full" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B4B6B] block mb-2 text-center">
                       Step 3: Moisturize
                     </span>
-                    <ProductCard product={routine.moisturize} />
+                    <ProductCard product={routine.moisturize} className="w-full min-w-0 h-full" />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B4B6B] block mb-2 text-center">
                       Step 4: Protect
                     </span>
-                    <ProductCard product={routine.protect} />
+                    <ProductCard product={routine.protect} className="w-full min-w-0 h-full" />
                   </div>
                 </div>
               </div>
