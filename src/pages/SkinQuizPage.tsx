@@ -519,7 +519,7 @@ export const SkinQuizPage: React.FC = () => {
                   The 4 Pillars of Your Glow
                 </h3>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 items-stretch">
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B4B6B] block mb-2 text-center">
                       Step 1: Cleanse

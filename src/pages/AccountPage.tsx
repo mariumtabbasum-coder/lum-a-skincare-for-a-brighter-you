@@ -510,6 +510,8 @@ export const AccountPage: React.FC = () => {
                       <input
                         id="signup-name"
                         type="text"
+                        autoComplete="name"
+                        maxLength={80}
                         value={signupName}
                         onChange={e => handleSignupChange('name', e.target.value)}
                         onBlur={() => handleSignupBlur('name')}
@@ -536,6 +538,8 @@ export const AccountPage: React.FC = () => {
                       <input
                         id="signup-email"
                         type="email"
+                        autoComplete="email"
+                        maxLength={254}
                         value={signupEmail}
                         onChange={e => handleSignupChange('email', e.target.value)}
                         onBlur={() => handleSignupBlur('email')}

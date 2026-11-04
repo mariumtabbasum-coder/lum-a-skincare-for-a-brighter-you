@@ -22,6 +22,7 @@ export const HomePage: React.FC = () => {
     setCommunityError('');
     setCommunitySuccess(true);
     setCommunityEmail('');
+    window.setTimeout(() => setCommunitySuccess(false), 3200);
   };
 
   return (
@@ -128,7 +129,7 @@ export const HomePage: React.FC = () => {
                       <p className="font-heading text-sm sm:text-base text-white">Radiant Face Serum</p>
                     </div>
                     <Link
-                      to="/shop/radiant-face-serum"
+                      to="/shop"
                       className="px-3.5 py-1.5 bg-white/90 hover:bg-white text-[#5D3A58] rounded-full text-xs font-semibold tracking-wider uppercase transition-colors shadow-sm"
                     >
                       Shop
@@ -326,7 +327,7 @@ export const HomePage: React.FC = () => {
               {communitySuccess ? (
                 <div className="p-4 bg-white/20 backdrop-blur-xs rounded-full inline-flex items-center gap-2 text-xs font-medium text-[#FFF7F7]">
                   <Check className="w-4 h-4 text-[#EFC6D8]" />
-                  <span>Welcome to the Luméa Community! (Frontend demo: no email recorded)</span>
+                  <span>Thanks for joining the Luméa Community!</span>
                 </div>
               ) : (
                 <form onSubmit={handleCommunitySubmit} noValidate className="max-w-md mx-auto pt-2 space-y-2">

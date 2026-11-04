@@ -19,6 +19,7 @@ export const Footer: React.FC = () => {
     setError('');
     setIsSubscribed(true);
     setEmail('');
+    window.setTimeout(() => setIsSubscribed(false), 3200);
   };
 
   return (
@@ -151,7 +152,7 @@ export const Footer: React.FC = () => {
             {isSubscribed ? (
               <div className="p-3.5 bg-[#6B4B6B]/40 border border-[#EFC6D8]/30 rounded-[14px] text-xs text-[#EFC6D8] flex items-center gap-2">
                 <Check className="w-4 h-4 text-[#EFC6D8]" />
-                <span>Welcome to the Glow Club! (Demo: no email stored)</span>
+                <span>Thanks for joining the Glow Club!</span>
               </div>
             ) : (
               <form onSubmit={handleSubscribe} noValidate className="space-y-2 pt-1">
